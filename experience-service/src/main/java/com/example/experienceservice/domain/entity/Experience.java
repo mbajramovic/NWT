@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,7 +28,9 @@ public class Experience {
     private String text;
 
     @NotNull
-    private Integer userId;
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id", nullable = false)
+    private Person user;
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern="dd/MM/yyyy")
@@ -36,10 +40,10 @@ public class Experience {
 
     }
 
-    public Experience(Integer id, String text, Integer userId, Date postDate) {
+    public Experience(Integer id, String text, Person user, Date postDate) {
         this.id = id;
         this.text = text;
-        this.userId = userId;
+        this.user = user;
         this.postDate = postDate;
     }
 
@@ -51,8 +55,8 @@ public class Experience {
         return this.text;
     }
 
-    public Integer getUserId() {
-        return this.userId;
+    public Person getUser() {
+        return this.user;
     }
 
     public Date getPostDate() {
@@ -67,8 +71,8 @@ public class Experience {
         this.text = text;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser(Person user) {
+        this.user = user;
     }
 
     public void setPostDate(Date postDate) {
@@ -77,7 +81,7 @@ public class Experience {
 
     @Override
     public String toString() {
-        return "Experience id: " + this.id + "\nText: " + this.text + "\nUser id: " + this.userId + "\nPost date: " + this.postDate.toString() + "\n";
+        return "Experience id: " + this.id + "\nText: " + this.text + "\nUser: " + this.user.getUsername() + "\nPost date: " + this.postDate.toString() + "\n";
     }
     
 }

@@ -27,7 +27,9 @@ public class Comment {
     private String text;
 
     @NotNull
-    private Integer userId;
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id", nullable = false)
+    private Person user;
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -41,10 +43,10 @@ public class Comment {
 
     }
 
-    public Comment(Integer id, String text, Integer userId, Date postDate) {
+    public Comment(Integer id, String text, Person user, Date postDate) {
         this.id = id;
         this.text = text;
-        this.userId = userId;
+        this.user = user;
         this.postDate = postDate;
     }
 
@@ -56,8 +58,8 @@ public class Comment {
         return this.text;
     }
 
-    public Integer getUserId() {
-        return this.userId;
+    public Person getUser() {
+        return this.user;
     }
 
     public Date getPostDate() {
@@ -76,8 +78,8 @@ public class Comment {
         this.text = text;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUserId(Person user) {
+        this.user = user;
     }
 
     public void setPostDate(Date postDate) {
@@ -90,7 +92,7 @@ public class Comment {
 
     @Override
     public String toString() {
-        return "Experience: " + this.experience.getText() + "\nExperience Author: " + this.experience.getUserId() +  "\n     Comment text: " + this.text + "\n     Comment Author: " + this.userId + "\n     Post date: " + this.postDate.toString() + "\n";
+        return "Experience: " + this.experience.getText() + "\nExperience Author: " + this.experience.getUser().getUsername() +  "\n     Comment text: " + this.text + "\n     Comment Author: " + this.user.getUsername() + "\n     Post date: " + this.postDate.toString() + "\n";
     }
 
 }
