@@ -7,6 +7,7 @@ import com.example.interactionservice.domain.entity.Follow;
 import com.example.interactionservice.domain.entity.Message;
 import com.example.interactionservice.domain.entity.Person;
 import com.example.interactionservice.domain.service.FollowService;
+import com.example.interactionservice.domain.service.MessageService;
 import com.example.interactionservice.domain.service.PersonService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ public class Seed implements ApplicationRunner {
     PersonService personService;
     @Autowired
     FollowService followService;
+    @Autowired
+    MessageService messageService;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -54,6 +57,7 @@ public class Seed implements ApplicationRunner {
             messages.add(new Message(users.get(0), users.get(1), "Amera, I am fine, thank u"));
             messages.add(new Message(users.get(2), users.get(1), "Amera, why don't u ask how i am today??? Angry, Ajla."));
             for (Message message : messages) {
+                messageService.newMessage(message);
                 System.out.println(message.toString());
             }
         }

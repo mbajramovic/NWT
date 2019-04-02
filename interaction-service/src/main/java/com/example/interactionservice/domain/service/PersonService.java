@@ -1,5 +1,7 @@
 package com.example.interactionservice.domain.service;
 
+import java.util.Optional;
+
 import com.example.interactionservice.domain.entity.Person;
 import com.example.interactionservice.domain.repository.PersonRepository;
 
@@ -11,8 +13,16 @@ public class PersonService {
     @Autowired
     PersonRepository personRepository;
 
-    public void newPerson(Person person) {
-        personRepository.save(person);
+    public Person newPerson(Person person) {
+        return personRepository.save(person);
+    }
+
+    public Optional<Person> getPerson(Integer id) {
+        return personRepository.findById(id);
+    }
+
+    public void deleteUser(Integer id) {
+        personRepository.deleteById(id);
     }
 
     

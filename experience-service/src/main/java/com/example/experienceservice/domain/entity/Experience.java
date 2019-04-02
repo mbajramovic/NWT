@@ -21,7 +21,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name="experience")
 public class Experience {
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Size(max=1000)

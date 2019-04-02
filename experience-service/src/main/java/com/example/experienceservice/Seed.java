@@ -58,7 +58,7 @@ public class Seed implements ApplicationRunner {
                 System.out.println(experience.toString());
             }*/
 
-            Iterable<Comment> allComments = commentService.getAll();
+           Iterable<Comment> allComments = commentService.getAll();
             for (Comment comment : allComments) {
                 System.out.println(comment.toString());
             }
