@@ -1,10 +1,16 @@
 package com.example.models;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -24,6 +30,11 @@ public class Location {
 	
 	@Column(name = "country")
 	private String country;
+	
+	@OneToMany(cascade = CascadeType.REMOVE)
+	@JoinColumn(name="parent_id")
+	//@OnDelete(action = OnDeleteAction.CASCADE)
+	private Set<Apartment> apartments = new HashSet<Apartment>();
 	
 	public Location() {}
 	

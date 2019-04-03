@@ -1,12 +1,17 @@
 package com.example.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.models.Person;
 import com.example.repositories.PersonRepository;
+
+/** Klasa predstavlja Service. Za realizaciju potrebnih funkcionalnosti koristi PersonRepository.
+ * @author Becic Ajla
+*/
 
 @Service
 public class PersonService {
@@ -25,5 +30,17 @@ public class PersonService {
 	public void deleteAll() {
 		personRepository.deleteAll();
 		
+	}
+	
+	public Iterable<Person> getAll() {
+		return personRepository.findAll();
+	}
+	
+	public Optional<Person> getById(Integer id) {
+        return personRepository.findById(id);
+    }
+	
+	public void deleteById(Integer id) {
+		personRepository.deleteById(id);
 	}
 }

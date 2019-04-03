@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -22,17 +24,21 @@ public class Apartment {
     private Integer id;
 	
 	@Column(name = "description")
+	@Size(max = 500, message="Opis ne može biti duži od 500 karaktera.")
 	private String description;
 
 	@Column(name = "title")
+	@Size(max =50, message="Naslov ne može biti duži od 50 karaktera.")
 	private String title;
 	
 	@ManyToOne
 	 @JoinColumn(name="person_id", nullable=false)
+	@NotNull
 	private Person person;
 	
 	@ManyToOne
 	 @JoinColumn(name="location_id", nullable=false)
+	@NotNull
 	private Location location;
 
 	/*@Temporal(TemporalType.DATE)
