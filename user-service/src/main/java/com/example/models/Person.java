@@ -16,6 +16,7 @@ public class Person {
     @SequenceGenerator(sequenceName = "student_seq", allocationSize = 1, initialValue=100, name = "STUDENT_SEQ")
     private Integer id;
 	
+	@NotNull
 	@Column(name = "username")
 	private String username;
 
