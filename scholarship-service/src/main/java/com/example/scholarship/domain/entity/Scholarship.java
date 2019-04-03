@@ -1,6 +1,7 @@
 package com.example.scholarship.domain.entity;
 
 import java.sql.Date;
+import java.util.regex.Pattern;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -20,32 +22,43 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name="scholarships")
 public class Scholarship {
 	
+	private static final String patternTekst="^[A-Z].*"; 
+	//da počinje velikim slovom
+	private static final String patternLink="^(http:\\/\\/|https:\\/\\/)?(www.)?([a-zA-Z0-9]+).[a-zA-Z0-9]*.[a-z]{3}.?([a-z]+)?$"; 
+	//validna internet adresa
+	private static final String patternDate="^([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)\\d{4}$";
+	//validan format datuma kao dd/mm/yyyy
+	
+	@NotNull
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	
+	@NotNull
+	@Size(max=2000)
 	@Column(name="text")
 	private String text;
 	
+	@NotNull
 	@Column(name="link")
 	private String link;
 
-	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name="userId", nullable=false)
 	private User user;
 	
-	
+	@NotNull
 	@Column(name = "postDate")
 	private String date;
 
-
+	
 	public String getDate() {
 		return date;
 	}
 
 	public void setDate(String date) {
-		this.date = date;
+		if(date.matches(patternDate)) this.date = date;
 	}
 
 	public Location getLocation() {
@@ -58,7 +71,7 @@ public class Scholarship {
 
 
 	@ManyToOne
-	@JoinColumn(name="location_id", nullable=false)
+	@JoinColumn(name="locationId", nullable=false)
 	private Location location;
 
 	public Scholarship() {}
@@ -76,7 +89,7 @@ public class Scholarship {
 	}
 
 	public void setText(String text) {
-		this.text = text;
+		if(text.matches(patternTekst)) this.text = text;
 	}
 
 	public String getLink() {
@@ -84,7 +97,7 @@ public class Scholarship {
 	}
 
 	public void setLink(String link) {
-		this.link = link;
+		if(link.matches(patternLink)) this.link = link;
 	}
 
 	public User getUser() {
@@ -95,13 +108,13 @@ public class Scholarship {
 		this.user = user;
 	}
 	
-	public Scholarship(Integer id, String text, String link, User user, String date, Location location) {
+	public Scholarship(String text, String link, User user, String date, Location location) {
 		super();
 		this.id = id;
-		this.text = text;
-		this.link = link;
+		if(text.matches(patternTekst))this.text = text;
+		if(link.matches(patternLink)) this.link = link;
 		this.user = user;
-		this.date = date;
+		if(date.matches(patternDate)) this.date = date;
 		this.location = location;
 	}
 
@@ -111,7 +124,7 @@ public class Scholarship {
 		return "Scholarship: " +this.getText() + "\n Link: "+
 	this.getLink()+"\n Published user: "+ this.user.getUsername()+
 	"\n Published date: "+ this.getDate()+
-	"\n Location: "+this.getLocation().getUniverity();
+	"\n Location: "+this.getLocation().getUniversity();
 	}
 
 }

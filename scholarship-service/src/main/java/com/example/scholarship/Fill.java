@@ -33,8 +33,8 @@ public class Fill implements ApplicationRunner {
         	userService.deleteAll();
         	locationService.deleteAll();
         	
-        	User user1=new User(1, "username1");
-        	User user2=new User(2, "username2");
+        	User user1=new User("username1");
+        	User user2=new User("username2");
         	List<User> users=new ArrayList<>();
         	users.add(user1);
         	users.add(user2);
@@ -42,18 +42,18 @@ public class Fill implements ApplicationRunner {
         		userService.newUser(user);    
             }
         	List<Location> locations = new ArrayList<Location>();
-            locations.add(new Location(1, "Elektrotehnicki fakultet", "Sarajevo", "BiH"));
-            locations.add(new Location(2, "Medicinski fakultet", "Tuzla", "BiH"));
-            Location l=new Location(3, "Filozofski fakultet", "Sarajevo", "BiH");
+            locations.add(new Location("Elektrotehnicki fakultet", "Sarajevo", "BiH"));
+            locations.add(new Location("Medicinski fakultet", "Tuzla", "BiH"));
+            Location l=new Location("Filozofski fakultet", "Sarajevo", "BiH");
             locations.add(l);
             for (Location location: locations) {
             	locationService.save(location);
             }
         	
             List<Scholarship> scholarships = new ArrayList<>();
-            scholarships.add(new Scholarship(1, "Tekst vezan za stipendiju", "www.stipendija1.ba", user1, "2019, 3, 27", l));
-            scholarships.add(new Scholarship(2, "Tekst vezan za stipendiju", "www.stipendija2.com", user1, "2019, 3, 27", l ));
-            scholarships.add(new Scholarship(3, "Tekst vezan za stipendiju", "www.stipendija1.de", user2,"2019, 3, 27", l ));
+            scholarships.add(new Scholarship("Tekst vezan za stipendiju", "www.stipendija1.com", user1, "27/03/2019", l));
+            scholarships.add(new Scholarship("Tekst vezan za stipendiju2", "www.stipendija2.com", user1, "27/03/2019", l ));
+            scholarships.add(new Scholarship("Tekst vezan za stipendiju3", "www.stipendija1.com", user2,"27/03/2019", l ));
             
             for (Scholarship scholarship : scholarships) {
             	scholarshipService.newScholarship(scholarship);
