@@ -52,6 +52,14 @@ public class ApartmentController {
 	public Optional<Apartment> getApartmentById(@RequestParam(value = "id") Integer id) {
 		return apartmentService.getById(id);
 	}
+	
+	/**
+	 * Ruta za dobavljanje svih apartmana na odreðenoj lokaciji
+	 */
+	@GetMapping("/getAllByLocation")
+	public Iterable<Apartment> getAllByLocation(@RequestParam(value = "id") Integer id) {
+		return apartmentService.getAllByLocation(id);
+	}
 
 	/**
 	 * Ruta za testiranje spremanja oglasa u bazu.
