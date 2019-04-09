@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.json.JSONObject;
+
+
 @RestController
 @RequestMapping("/follow")
 public class FollowController {
@@ -64,5 +67,15 @@ public class FollowController {
         }
     }
     
+    @RequestMapping(method = RequestMethod.GET, value="/follow/{followerId}/{followingId}")
+    public ResponseEntity getFriendship(@PathVariable("followerId")Integer followerId, @PathVariable("followingId")Integer followingId) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(followService.getFriendship(followerId, followingId));
+
+        }
+        catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getLocalizedMessage());
+        }
+    }
 
 }

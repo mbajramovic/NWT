@@ -56,6 +56,12 @@
 		<!-- dependecy za mysql server <dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> 
 			</dependency> -->
 
+		<!-- dependeny for rabbitmq-->
+		<dependency>
+		   <groupId>org.springframework.amqp</groupId>
+		   <artifactId>spring-rabbit</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>

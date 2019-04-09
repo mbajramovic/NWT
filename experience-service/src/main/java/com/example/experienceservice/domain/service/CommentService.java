@@ -15,10 +15,16 @@ import org.springframework.stereotype.Service;
 public class CommentService {
     @Autowired
     CommentRepository commentRepository;
+    
+    @Autowired
+    SyncRequestSender syncRequestSender;
 
-    public Comment newComment(Comment comment) {
+    public Comment newComment(Comment comment) throws Exception {
         try {
-            return commentRepository.save(comment);
+            if (syncRequestSender.friendshipExists(comment.getExperience().getUser().getUserId(), comment.getUser().getUserId()))
+                return commentRepository.save(comment);
+            else
+                throw new Exception("You must follow the user to comment his experiences.");
         }
         catch(Exception ex) {
             throw ex;
