@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="STUDENT")
@@ -20,9 +22,12 @@ public class Person {
 	@Column(name = "username")
 	private String username;
 
+	@NotNull
 	@Column(name = "password")
 	private String password;
-
+	
+	@NotNull
+	@Email
 	@Column(name = "email")
 	private String email;
 	

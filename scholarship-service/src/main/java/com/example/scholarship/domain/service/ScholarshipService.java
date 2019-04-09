@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.example.scholarship.domain.entity.Location;
 import com.example.scholarship.domain.entity.Scholarship;
 import com.example.scholarship.domain.entity.User;
+import com.example.scholarship.domain.exception.EntityNotFoundException;
 import com.example.scholarship.domain.repository.LocationRepository;
 import com.example.scholarship.domain.repository.ScholarshipRepository;
 import com.example.scholarship.domain.repository.UserRepository;
@@ -31,11 +32,11 @@ public class ScholarshipService {
 	@Autowired
 	UserRepository userRepository;
 		
-	public void newScholarship(Scholarship scholarship) {
-		scholarshipRepository.save(scholarship);
+	public Scholarship newScholarship(Scholarship scholarship) throws EntityNotFoundException {
+		 return scholarshipRepository.save(scholarship);
 	}
 	
-	public void newScholarship() {
+	public void newScholarship() throws EntityNotFoundException{
 		Scholarship scholarship=new Scholarship();
 		scholarship.setDate("29/3/2019");
 		scholarship.setLink("www.stipendija4.at");
@@ -56,7 +57,7 @@ public class ScholarshipService {
 		scholarshipRepository.save(scholarship);
 	}
 	
-	public void update(Scholarship newscholarship, Integer id) {
+	public void update(Scholarship newscholarship, Integer id) throws EntityNotFoundException {
 		scholarshipRepository.findById(id)
 		.map(scholarship -> {
 			scholarship.setDate(newscholarship.getDate());
@@ -71,23 +72,25 @@ public class ScholarshipService {
 		});
 	}
 	
-	public void deleteAll() {
+	public void deleteAll() throws EntityNotFoundException {
 		scholarshipRepository.deleteAll();
 	}
 	
-	public Iterable<Scholarship> getAll() {
+	public Iterable<Scholarship> getAll() throws EntityNotFoundException {
 		return scholarshipRepository.findAll();
 	}
-	public Optional<Scholarship> getById(Integer id) {
+	public Optional<Scholarship> getById(Integer id) throws EntityNotFoundException {
 		return scholarshipRepository.findById(id);
+		
+		 
     }
 	
 	
-    public Iterable<Scholarship> scholarshipsByUser(Integer id){
+    public Iterable<Scholarship> scholarshipsByUser(Integer id) throws EntityNotFoundException{
     	return scholarshipRepository.getScholarshipsByUser(id);
     }
      
-	public void deleteById (Integer id) {
+	public void deleteById (Integer id) throws EntityNotFoundException {
 		scholarshipRepository.deleteById(id);
 	}
 	
