@@ -26,6 +26,8 @@ public class Person {
 	@Column(name = "password")
 	private String password;
 
+
+	@NotNull
 	@Email
 	@Column(name = "email")
 	private String email;

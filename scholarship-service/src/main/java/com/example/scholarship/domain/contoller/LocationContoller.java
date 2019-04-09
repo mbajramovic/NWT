@@ -17,71 +17,84 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.scholarship.domain.entity.Location;
 import com.example.scholarship.domain.entity.User;
+import com.example.scholarship.domain.exception.EntityNotFoundException;
 import com.example.scholarship.domain.service.LocationService;
 
 @RestController
+@RequestMapping(value = "/location")
 public class LocationContoller {
 	
 	@Autowired
 	LocationService locationService;
 	
-	@PostMapping("/locationSave")
-	public ResponseEntity saveLocation(@RequestBody Location location) {
+	@PostMapping("")
+	public Location saveLocation(@RequestBody Location location) {
 		try {
-			locationService.save(location);
-			return ResponseEntity.status(HttpStatus.OK).body("Uspješno dodana lokacija");
-		}catch(Exception e) {
-			 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage());
-				}
+			return locationService.save(location);
+		} catch (EntityNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		return location;
 		
-	@GetMapping("/locations")
-	public ResponseEntity allLocations() {
+	}
+		
+	@GetMapping("/")
+	public Iterable<Location> getAllLocations() {
 		try {
-			return ResponseEntity.status(HttpStatus.OK).body(locationService.getAll());
-		}catch(Exception e) {
-			 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage());
-				}
+			return locationService.getAll();
+		} catch (EntityNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
 		 }
 	
-	@GetMapping("/location")
-	public ResponseEntity getLocation (@RequestParam(value="id") Integer id) {
+	@GetMapping("")
+	public Optional<Location> getLocation (@RequestParam(value="id") Integer id) {
 		try {
-			return ResponseEntity.status(HttpStatus.OK).body(locationService.getById(id));
-		}catch(Exception e) {
-			 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage());
-				}
+			return locationService.getById(id);
+		} catch (EntityNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
 		}
 	
-	@DeleteMapping ("/locationsDelete")
-	public ResponseEntity deleteLocations() {
+	@DeleteMapping ("/")
+	public void deleteAllLocations() {
 		try {
 			locationService.deleteAll();
-			return ResponseEntity.status(HttpStatus.OK).body("Lokacije uspjesno obrisane");
-		}catch(Exception e) {
-			 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage());
-				}
+		} catch (EntityNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
 		}
 	
-	@DeleteMapping("/locationDelete")
-	public ResponseEntity deleteLocation (@RequestParam(value="id") Integer id) {
+	@DeleteMapping("")
+	public void deleteLocation (@RequestParam(value="id") Integer id) {
 		try {
 			locationService.deleteById(id);
-			return ResponseEntity.status(HttpStatus.OK).body("Lokacija uspjesno obrisana");
-		}catch(Exception e) {
-			 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage());
-				}
+		} catch (EntityNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
 		}
 	
 	
-	@PutMapping("/locationUpdate/{id}")
-	public ResponseEntity replaceLocation(@RequestBody Location newLocation, @PathVariable Integer id) {
+	@PutMapping("")
+	public void replaceLocation(@RequestBody Location newLocation, @PathVariable Integer id) {
 		try {
 			locationService.update(newLocation, id);
-			return ResponseEntity.status(HttpStatus.OK).body("Lokacija uspjesno azurirana");
-		}catch(Exception e) {
-			 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage());
-				}
+		} catch (EntityNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
 		}
 	
 }

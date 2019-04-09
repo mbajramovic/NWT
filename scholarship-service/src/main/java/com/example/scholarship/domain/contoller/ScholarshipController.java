@@ -17,80 +17,99 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.scholarship.domain.entity.Location;
 import com.example.scholarship.domain.entity.Scholarship;
+import com.example.scholarship.domain.exception.EntityNotFoundException;
+import com.example.scholarship.domain.exception.RestExceptionHandler;
 import com.example.scholarship.domain.exception.ScholarshipNotFoundException;
 import com.example.scholarship.domain.service.ScholarshipService;
 
 @RestController
+@RequestMapping(value = "/scholarship") 
 public class ScholarshipController {
 	
 	@Autowired
 	ScholarshipService scholarshipService;
 	
-	@PostMapping("/scholarshipSave")
-	public ResponseEntity saveScholarship(@RequestBody Scholarship scholarship) {
+	@PostMapping("")
+	public Scholarship saveScholarship(@RequestBody Scholarship scholarship) {
 		try {
-			scholarshipService.newScholarship(scholarship);
-			return ResponseEntity.status(HttpStatus.OK).body("Uspješno dodana stipendija");
-		}catch(Exception e) {
-			 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage());
-				}
+				return scholarshipService.newScholarship(scholarship);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		return null;
+	}
+	
+	@GetMapping("/")
+	public Iterable<Scholarship> allScholarships() {
+		try {
+			scholarshipService.getAll();
+		} catch (EntityNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
 		}
 	
-	@GetMapping("/allScholarships")
-	public ResponseEntity allScholarships() {
+	@GetMapping("")
+	public Optional<Scholarship> getScholarship(@RequestParam(value="id") Integer id) {
 		try {
-			
-			return ResponseEntity.status(HttpStatus.OK).body(scholarshipService.getAll());
-		}catch(Exception e) {
-			 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage());
-				}
+			return scholarshipService.getById(id);
+		} catch (EntityNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-	
-	@GetMapping("/scholarship")
-	public Scholarship getScholarship(@RequestParam(value="id") Integer id) {
-		return scholarshipService.getById(id)
-				.orElseThrow(() -> new ScholarshipNotFoundException(id));
+		return null;
+				
 	}
 	
 	
-	@GetMapping("/scholarshipsByUser/{userId}")
-	public ResponseEntity scholarshipsByUser(@PathVariable("userId") Integer userId) {
+	@GetMapping("/user/{userId}")
+	public Iterable<Scholarship> scholarshipsByUser(@PathVariable("userId") Integer userId) {
 		try {
-			
-			return ResponseEntity.status(HttpStatus.OK).body(scholarshipService.scholarshipsByUser(userId));
-		}catch(Exception e) {
-			 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage());
-				}
+			scholarshipService.scholarshipsByUser(userId);
+		} catch (EntityNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
 		}
 	
-	@DeleteMapping("/scholarshipsDelete")
-	public ResponseEntity deleteScholarships() {
+	@DeleteMapping("/")
+	public void deleteScholarships() {
 		try {
-			scholarshipService.deleteAll();
-			return ResponseEntity.status(HttpStatus.OK).body("Uspješno obrisane stipendije");
-		}catch(Exception e) {
-			 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage());
-				}
+			 scholarshipService.deleteAll();
+			 //return ResponseEntity.status(HttpStatus.OK).body("Uspješno obrisane stipendije");
+		}catch(EntityNotFoundException e) {
+			 //return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage());
+		e.printStackTrace();		
+		}
+		
 		}
 	
-	@DeleteMapping("/scholarshipDelete")
-	public ResponseEntity deleteScholarship(@RequestParam(value="id") Integer id) {
+	@DeleteMapping("")
+	public void deleteScholarship(@RequestParam(value="id") Integer id) {
 		try {
 			scholarshipService.deleteById(id);
-			return ResponseEntity.status(HttpStatus.OK).body("Uspješno obrisana stipendija");
-		}catch(Exception e) {
-			 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage());
+			//return ResponseEntity.status(HttpStatus.OK).body("Uspješno obrisana stipendija");
+		}catch(EntityNotFoundException e) {
+			 //return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage());
 				}
 		}
 	
-	@PutMapping("/scholarshipUpdate/{id}")
-	public ResponseEntity replaceScholarship(@RequestBody Scholarship scholarship, @PathVariable Integer id) {
+	@PutMapping("/{id}")
+	public void replaceScholarship(@RequestBody Scholarship scholarship, @PathVariable Integer id) {
 		try {
 			scholarshipService.update(scholarship, id);
-			return ResponseEntity.status(HttpStatus.OK).body("Uspješno azurirana stipendija");
-		}catch(Exception e) {
-			 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage());
-				}
+		} catch (EntityNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+		
 		}
 	
 }
