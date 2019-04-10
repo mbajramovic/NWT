@@ -16,12 +16,11 @@ import org.json.JSONObject;
 
 
 @RestController
-@RequestMapping("/follow")
 public class FollowController {
     @Autowired
     FollowService followService;
 
-    @RequestMapping(method = RequestMethod.POST, value="/new")
+    @RequestMapping(method = RequestMethod.POST, value="/follow")
     public ResponseEntity follow(@RequestBody Follow follow) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(followService.newFollowAction(follow));
@@ -31,7 +30,7 @@ public class FollowController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value="/unfollow/{follower}/{following}")
+    @RequestMapping(method = RequestMethod.DELETE, value="/follow/{follower}/{following}")
     public ResponseEntity unfollow(@PathVariable("follower") Integer follower, @PathVariable("following") Integer following) {
         try {
             followService.unfollow(follower, following);
@@ -46,7 +45,7 @@ public class FollowController {
         } 
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/followers/{userId}")
+    @RequestMapping(method = RequestMethod.GET, value="/user/{userId}/followers")
     public ResponseEntity getFollowers(@PathVariable("userId") Integer userId) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(followService.getFollowers(userId));
@@ -57,7 +56,7 @@ public class FollowController {
     }
 
     
-    @RequestMapping(method = RequestMethod.GET, value="/following/{userId}")
+    @RequestMapping(method = RequestMethod.GET, value="/user/{userId}/following")
     public ResponseEntity following(@PathVariable("userId") Integer userId) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(followService.following(userId));

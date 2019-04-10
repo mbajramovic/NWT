@@ -14,12 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@RequestMapping(value = "/comment") 
 public class CommentController {
     @Autowired
     CommentService commentService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{id}") 
+    @RequestMapping(method = RequestMethod.GET, value = "/comment/{id}") 
     public ResponseEntity getComment(@PathVariable("id") Integer id) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(commentService.getById(id));
@@ -29,7 +28,7 @@ public class CommentController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.POST, value="/new", consumes = "application/json")
+    @RequestMapping(method = RequestMethod.POST, value="/comment", consumes = "application/json")
     public ResponseEntity postComment(@RequestBody Comment comment) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(commentService.newComment(comment));
@@ -39,7 +38,7 @@ public class CommentController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/getAllForExperience/{experienceId}")
+    @RequestMapping(method = RequestMethod.GET, value="experience/{experienceId}/comment")
     public ResponseEntity getAllForExperience(@PathVariable("experienceId") Integer experienceId) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(commentService.gettAllForExperience(experienceId));
@@ -49,7 +48,7 @@ public class CommentController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/getCommentsNumber/{experienceId}") 
+    @RequestMapping(method = RequestMethod.GET, value="experience/{experienceId}/commentsNum") 
     public ResponseEntity getCommentsNumberForExperience(@PathVariable("experienceId") Integer experienceId) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(commentService.getCommentsNumberForExperience(experienceId));
@@ -59,7 +58,7 @@ public class CommentController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value="/deleteCommentsForExperience/{experienceId}") 
+    @RequestMapping(method = RequestMethod.DELETE, value="/experience/{experienceId}/comment") 
     public ResponseEntity deleteAll(@PathVariable("experienceId") Integer experienceId) {
         try {
             commentService.deleteAllForExperience(experienceId);
@@ -70,7 +69,7 @@ public class CommentController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value="/delete/{id}")
+    @RequestMapping(method = RequestMethod.DELETE, value="/comment/{id}")
     public ResponseEntity deleteById(@PathVariable("id") Integer id) {
         try {
             commentService.deleteById(id);

@@ -14,12 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@RequestMapping(value="/message")
 public class MessageController {
     @Autowired
     MessageService messageService;
 
-    @RequestMapping(method=RequestMethod.GET, value="/getMessagesForUser/{userId}")
+    @RequestMapping(method=RequestMethod.GET, value="/user/{userId}/messages")
     public ResponseEntity getAllMessagesForUser(@PathVariable("userId") Integer userId) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(messageService.getMessagesForUser(userId));
@@ -29,7 +28,7 @@ public class MessageController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/{id}")
+    @RequestMapping(method = RequestMethod.GET, value="/message/{id}")
     public ResponseEntity getMessage(@PathVariable("id")Integer id) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(messageService.getMessage(id));
@@ -39,7 +38,7 @@ public class MessageController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/getSentMessages/{userId}")
+    @RequestMapping(method = RequestMethod.GET, value="/user/{userId}/sentMessages")
     public ResponseEntity getSentMessages(@PathVariable("userId") Integer userId) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(messageService.getSentMessages(userId));
@@ -49,7 +48,7 @@ public class MessageController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.POST, value="/new")
+    @RequestMapping(method = RequestMethod.POST, value="/message")
     public ResponseEntity newMessage(@RequestBody Message message) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(messageService.newMessage(message));
@@ -59,7 +58,7 @@ public class MessageController {
         }
     }
 
-    @RequestMapping(method =RequestMethod.DELETE, value="/delete/{id}")
+    @RequestMapping(method =RequestMethod.DELETE, value="/message/{id}")
     public ResponseEntity deleteMessage(@PathVariable("id") Integer id) {
         try {
             messageService.deleteMessage(id);

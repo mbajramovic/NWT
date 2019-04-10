@@ -14,12 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@RequestMapping(path="/experience")
 public class ExperienceController {
     @Autowired
     ExperienceService experienceService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/allExperiences")
+    @RequestMapping(method = RequestMethod.GET, value = "/experiences")
     public ResponseEntity getAllExperiences() {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(experienceService.getAll());
@@ -30,7 +29,7 @@ public class ExperienceController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    @RequestMapping(method = RequestMethod.GET, value = "/experience/{id}")
     public ResponseEntity getExperienceById(@PathVariable("id") Integer id) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(experienceService.getById(id));
@@ -41,7 +40,7 @@ public class ExperienceController {
         }
     }
 
-    @RequestMapping(method= RequestMethod.GET, value="/getAllForUser/{userId}")
+    @RequestMapping(method= RequestMethod.GET, value="/user/{userId}/experience")
     public ResponseEntity getExperiencesForUser(@PathVariable("userId") Integer userId) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(experienceService.getExperiencesForUser(userId));
@@ -51,7 +50,7 @@ public class ExperienceController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/new", consumes = "application/json")
+    @RequestMapping(method = RequestMethod.POST, value = "/experience", consumes = "application/json")
     public ResponseEntity postExperience(@RequestBody Experience experience) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(experienceService.newExperience(experience));
@@ -62,7 +61,7 @@ public class ExperienceController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value="/deleteAll")
+    @RequestMapping(method = RequestMethod.DELETE, value="/experiences")
     public ResponseEntity deleteExperiences() {
         try {
             experienceService.deleteAll();
@@ -74,7 +73,7 @@ public class ExperienceController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value="/delete/{id}")
+    @RequestMapping(method = RequestMethod.DELETE, value="/experience/{id}")
     public ResponseEntity deleteExperienceById(@PathVariable("id") Integer id) {
         try {
             experienceService.deleteById(id);
@@ -85,7 +84,7 @@ public class ExperienceController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value="/deleteExperiencesForUser/{userId}")
+    @RequestMapping(method = RequestMethod.DELETE, value="/user/{userId}/experience")
     public ResponseEntity deleteExperiencesForUser(@PathVariable("userId") Integer userId) {
         try {
             experienceService.getExperiencesForUser(userId);
@@ -96,7 +95,7 @@ public class ExperienceController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/update")
+    @RequestMapping(method = RequestMethod.PUT, value = "/experience")
     public ResponseEntity updateExperience(@RequestBody Experience experience) {
         try {
             experienceService.updateExperience(experience);

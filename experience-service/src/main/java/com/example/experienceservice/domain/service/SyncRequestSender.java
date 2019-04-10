@@ -26,7 +26,7 @@ public class SyncRequestSender {
     
     public Boolean friendshipExists(Integer userId, Integer followerId)  {
 
-        String uri = "http://" + ip + ":" + port + "/follow/follow/{followerId}/{followingId}";
+        String uri = "http://" + ip + ":" + port + "/follow/{followerId}/{followingId}";
         Map<String, Integer> params = new HashMap<String, Integer>();
         params.put("followerId", followerId);
         params.put("followingId", userId);

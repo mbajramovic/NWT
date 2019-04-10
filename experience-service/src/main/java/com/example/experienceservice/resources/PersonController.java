@@ -29,7 +29,7 @@ public class PersonController {
         }
     }
 
-    @RequestMapping(method=RequestMethod.DELETE, value="/delete/{id}")
+    @RequestMapping(method=RequestMethod.DELETE, value="/{id}")
     public ResponseEntity deleteUser(@PathVariable("id") Integer id) {
         try {
             personService.deleteUser(id);
@@ -40,7 +40,7 @@ public class PersonController {
         }
     }
 
-    @RequestMapping(method=RequestMethod.POST, value="/new")
+    @RequestMapping(method=RequestMethod.POST, value="")
     public ResponseEntity addUser(@RequestBody Person person) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(personService.newPerson(person));
