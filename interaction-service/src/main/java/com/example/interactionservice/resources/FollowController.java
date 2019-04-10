@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.server.ResponseStatusException;
 import org.json.JSONObject;
 
 
@@ -27,7 +27,7 @@ public class FollowController {
             return ResponseEntity.status(HttpStatus.OK).body(followService.newFollowAction(follow));
         }
         catch(Exception ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
 
@@ -38,11 +38,11 @@ public class FollowController {
             return ResponseEntity.status(HttpStatus.OK).body("unfollowed");
         }
         catch(IllegalArgumentException ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
 
         }
         catch(Exception ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         } 
     }
 
@@ -52,7 +52,7 @@ public class FollowController {
             return ResponseEntity.status(HttpStatus.OK).body(followService.getFollowers(userId));
         }
         catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
 
@@ -63,7 +63,7 @@ public class FollowController {
             return ResponseEntity.status(HttpStatus.OK).body(followService.following(userId));
         }
         catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
     
@@ -74,7 +74,7 @@ public class FollowController {
 
         }
         catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
 

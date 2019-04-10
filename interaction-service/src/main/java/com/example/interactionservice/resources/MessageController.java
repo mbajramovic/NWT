@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping(value="/message")
@@ -24,7 +25,7 @@ public class MessageController {
             return ResponseEntity.status(HttpStatus.OK).body(messageService.getMessagesForUser(userId));
         }
         catch(Exception ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
 
@@ -34,7 +35,7 @@ public class MessageController {
             return ResponseEntity.status(HttpStatus.OK).body(messageService.getMessage(id));
         }
         catch(Exception ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
 
@@ -44,7 +45,7 @@ public class MessageController {
             return ResponseEntity.status(HttpStatus.OK).body(messageService.getSentMessages(userId));
         }
         catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
 
@@ -54,7 +55,7 @@ public class MessageController {
             return ResponseEntity.status(HttpStatus.OK).body(messageService.newMessage(message));
         }
         catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
 
@@ -65,7 +66,7 @@ public class MessageController {
             return ResponseEntity.status(HttpStatus.OK).body("deleted");
         }
         catch(Exception ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
 }

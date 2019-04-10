@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping(path="/experience")
@@ -25,7 +26,7 @@ public class ExperienceController {
         }
         catch(Exception ex) {
             System.out.println(ex.getLocalizedMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
 
@@ -36,7 +37,7 @@ public class ExperienceController {
         }
         catch(Exception ex) {
             System.out.println(ex.getLocalizedMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getLocalizedMessage()); 
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
 
@@ -46,7 +47,7 @@ public class ExperienceController {
             return ResponseEntity.status(HttpStatus.OK).body(experienceService.getExperiencesForUser(userId));
         }
         catch(Exception ex) {
-            return ResponseEntity.status(HttpStatus.OK).body(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
 
@@ -57,7 +58,7 @@ public class ExperienceController {
         }
         catch(Exception ex) {
             System.out.println(ex.getLocalizedMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bad request", ex);
         }
     }
 
@@ -69,7 +70,7 @@ public class ExperienceController {
         }
         catch (Exception ex) {
             System.out.println(ex.getLocalizedMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
 
@@ -80,7 +81,7 @@ public class ExperienceController {
             return ResponseEntity.status(HttpStatus.OK).body("deleted");
         }
         catch(Exception ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
 
@@ -91,7 +92,7 @@ public class ExperienceController {
             return ResponseEntity.status(HttpStatus.OK).body("deleted");
         }
         catch(Exception ex) {
-            return ResponseEntity.status(HttpStatus.OK).body(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
 
@@ -102,7 +103,7 @@ public class ExperienceController {
             return ResponseEntity.status(HttpStatus.OK).body("updated");
         }
         catch(Exception ex) {
-            return ResponseEntity.status(HttpStatus.OK).body(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
 }

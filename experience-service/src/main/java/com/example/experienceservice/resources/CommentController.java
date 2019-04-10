@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping(value = "/comment") 
@@ -24,7 +25,7 @@ public class CommentController {
             return ResponseEntity.status(HttpStatus.OK).body(commentService.getById(id));
         }
         catch(Exception ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getLocalizedMessage());
+           throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bad request", ex);
         }
     }
 
@@ -34,7 +35,7 @@ public class CommentController {
             return ResponseEntity.status(HttpStatus.OK).body(commentService.newComment(comment));
         }
         catch(Exception ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
 
@@ -44,7 +45,7 @@ public class CommentController {
             return ResponseEntity.status(HttpStatus.OK).body(commentService.gettAllForExperience(experienceId));
         }
         catch(Exception ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
 
@@ -54,7 +55,7 @@ public class CommentController {
             return ResponseEntity.status(HttpStatus.OK).body(commentService.getCommentsNumberForExperience(experienceId));
         }
         catch(Exception ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
 
@@ -65,7 +66,7 @@ public class CommentController {
             return ResponseEntity.status(HttpStatus.OK).body("deleted");
         }
         catch(Exception ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
 
@@ -76,7 +77,7 @@ public class CommentController {
             return ResponseEntity.status(HttpStatus.OK).body("deleted");
         }
         catch(Exception ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
 
