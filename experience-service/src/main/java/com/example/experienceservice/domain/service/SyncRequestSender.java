@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.example.experienceservice.domain.entity.Person;
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.EurekaClient;
+import com.netflix.discovery.shared.Application;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,7 +17,8 @@ import org.springframework.web.client.RestTemplate;
 
 @Component
 public class SyncRequestSender {
-
+    @Autowired
+    private EurekaClient eurekaClient;
 
     @Value("${interaction.ip}")
     private String ip;
@@ -22,11 +26,14 @@ public class SyncRequestSender {
     @Value("${interaction.port}")
     private String port;
 
-
+    @Value("${eureka.interaction.serviceId}")
+    private String interactionServiceId;
     
     public Boolean friendshipExists(Integer userId, Integer followerId)  {
-
-        String uri = "http://" + ip + ":" + port + "/follow/{followerId}/{followingId}";
+        Application application = eurekaClient.getApplication(interactionServiceId);
+        InstanceInfo instanceInfo = application.getInstances().get(0);
+        String uri = "http://" + instanceInfo.getIPAddr() + ":" + instanceInfo.getPort() + "/follow/{followerId}/{followingId}";
+        System.out.println(uri);
         Map<String, Integer> params = new HashMap<String, Integer>();
         params.put("followerId", followerId);
         params.put("followingId", userId);
