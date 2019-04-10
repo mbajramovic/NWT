@@ -20,12 +20,6 @@ public class SyncRequestSender {
     @Autowired
     private EurekaClient eurekaClient;
 
-    @Value("${interaction.ip}")
-    private String ip;
-
-    @Value("${interaction.port}")
-    private String port;
-
     @Value("${eureka.interaction.serviceId}")
     private String interactionServiceId;
     
@@ -33,7 +27,6 @@ public class SyncRequestSender {
         Application application = eurekaClient.getApplication(interactionServiceId);
         InstanceInfo instanceInfo = application.getInstances().get(0);
         String uri = "http://" + instanceInfo.getIPAddr() + ":" + instanceInfo.getPort() + "/follow/{followerId}/{followingId}";
-        System.out.println(uri);
         Map<String, Integer> params = new HashMap<String, Integer>();
         params.put("followerId", followerId);
         params.put("followingId", userId);
