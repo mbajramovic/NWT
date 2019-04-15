@@ -22,21 +22,27 @@ public class PublishEventHandler {
 
     @Autowired
     public PublishEventHandler(RabbitTemplate rabbitTemplate, Queue candidateQueue) {
+		  System.out.println("ajla publisheventhandler");
         this.rabbitTemplate = rabbitTemplate;
         this.candidateQueue = candidateQueue;
     }
 
     @HandleAfterCreate
     public void handleCandidateSave(Person candidate) {
+		  System.out.println("ajla publish event listener handlecandidatesave");
         sendMessage(candidate);
     }
 
     private void sendMessage(Person candidate) {
+		  System.out.println("ajla publish event listener sendmessage");
         rabbitTemplate.convertAndSend(
                 candidateQueue.getName(), serializeToJson(candidate));
+        
+        logger.info("Person created", candidate);
     }
 
     private String serializeToJson(Person candidate) {
+		  System.out.println("ajla publish event listener serializer");
         ObjectMapper mapper = new ObjectMapper();
         String jsonInString = "";
 

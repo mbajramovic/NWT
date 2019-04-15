@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.models.Apartment;
 import com.example.repositories.ApartmentRepository;
 
+
 /** Klasa predstavlja Service. Za realizaciju potrebnih funkcionalnosti koristi ApartmentRepository.
  * @author Becic Ajla
 */
