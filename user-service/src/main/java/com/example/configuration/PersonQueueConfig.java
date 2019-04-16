@@ -14,4 +14,10 @@ public class PersonQueueConfig {
 		return new Queue("persons.queue");
 	}
 
+/*
+    @Bean
+    public Queue userUpdatedQueue() {
+        return new Queue("user_updated_queue");
+    }
+*/
 }

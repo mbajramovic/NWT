@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.models.Person;
 import com.example.repositories.PersonRepository;
 
+
 @Service
 public class PersonService {
 
@@ -40,4 +41,14 @@ public class PersonService {
 		List<Person> user = personRepository.findPerson(username, password);
 		return user.size() > 0 ? user.get(0) : null;
 	}
+	public Person update(Person newUser, Integer id) throws Exception {
+    	return personRepository.findById(id)
+		.map(person -> {
+			person.setUsername(newUser.getUsername());
+			return personRepository.save(person);
+		}).orElseGet(() -> {
+			newUser.setId(id);
+			return personRepository.save(newUser);
+		});
+    }
 }

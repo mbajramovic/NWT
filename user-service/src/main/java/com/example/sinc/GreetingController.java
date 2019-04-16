@@ -1,4 +1,4 @@
-package com.example;
+package com.example.sinc;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 

@@ -31,6 +31,7 @@ public class UserController {
 	public void saveUser(@RequestBody User user) {
 		try {
 			userService.newUser(user);
+			//publishEventHandler.handleCandidateSave(person);
 		} catch (EntityNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

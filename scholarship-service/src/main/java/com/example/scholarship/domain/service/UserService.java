@@ -16,6 +16,8 @@ public class UserService {
 
     public void newUser(User user) throws EntityNotFoundException {
       userRepository.save(user);
+      String routingKey = "customer.created";
+      String message = "customer created";
         
    }
 

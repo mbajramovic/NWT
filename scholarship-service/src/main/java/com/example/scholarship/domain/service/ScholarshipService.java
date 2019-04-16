@@ -85,7 +85,6 @@ public class ScholarshipService {
 		 
     }
 	
-	
     public Iterable<Scholarship> scholarshipsByUser(Integer id) throws EntityNotFoundException{
     	return scholarshipRepository.getScholarshipsByUser(id);
     }

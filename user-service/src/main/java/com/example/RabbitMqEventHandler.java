@@ -6,6 +6,7 @@ import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.core.annotation.HandleAfterCreate;
+import org.springframework.data.rest.core.annotation.HandleAfterSave;
 import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 import org.springframework.stereotype.Component;
 
@@ -19,11 +20,15 @@ public class RabbitMqEventHandler {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	private RabbitTemplate rabbitTemplate;
 	private Queue personQueue;
+	//private Queue userUpdatedQueue;
+
 
 	@Autowired
 	    public RabbitMqEventHandler(RabbitTemplate rabbitTemplate, Queue personQueue) {
+	    		//, Queue userUpdatedQueue) {
 	        this.rabbitTemplate = rabbitTemplate;
 	        this.personQueue = personQueue;
+	        //this.userUpdatedQueue = userUpdatedQueue;
 	    }
 
 	@HandleAfterCreate
@@ -33,10 +38,17 @@ public class RabbitMqEventHandler {
 
 	private void sendMessage(Person person) {
 		rabbitTemplate.convertAndSend(personQueue.getName(), serializeToJson(person));
-
+		
 		logger.info("Person created", person);
 	}
-
+	/*
+	@HandleAfterSave
+    public void handleAfterSaved(Person person) {
+        rabbitTemplate.convertAndSend(
+                userUpdatedQueue.getName(), serializeToJson(person));
+        logger.info("Person updated", person);
+}
+	*/
 	private String serializeToJson(Person person) {
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonInString = "";

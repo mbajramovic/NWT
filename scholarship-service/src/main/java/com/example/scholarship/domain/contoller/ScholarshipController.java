@@ -41,10 +41,10 @@ public class ScholarshipController {
 		return null;
 	}
 	
-	@GetMapping("/")
+	@GetMapping("")
 	public Iterable<Scholarship> allScholarships() {
 		try {
-			scholarshipService.getAll();
+			return scholarshipService.getAll();
 		} catch (EntityNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -53,7 +53,7 @@ public class ScholarshipController {
 		
 		}
 	
-	@GetMapping("")
+	@GetMapping("/")
 	public Optional<Scholarship> getScholarship(@RequestParam(value="id") Integer id) {
 		try {
 			return scholarshipService.getById(id);
@@ -69,7 +69,7 @@ public class ScholarshipController {
 	@GetMapping("/user/{userId}")
 	public Iterable<Scholarship> scholarshipsByUser(@PathVariable("userId") Integer userId) {
 		try {
-			scholarshipService.scholarshipsByUser(userId);
+			return scholarshipService.scholarshipsByUser(userId);
 		} catch (EntityNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -78,7 +78,7 @@ public class ScholarshipController {
 		
 		}
 	
-	@DeleteMapping("/")
+	@DeleteMapping("")
 	public void deleteScholarships() {
 		try {
 			 scholarshipService.deleteAll();
@@ -90,7 +90,7 @@ public class ScholarshipController {
 		
 		}
 	
-	@DeleteMapping("")
+	@DeleteMapping("/")
 	public void deleteScholarship(@RequestParam(value="id") Integer id) {
 		try {
 			scholarshipService.deleteById(id);

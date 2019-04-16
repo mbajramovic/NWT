@@ -6,16 +6,23 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.rest.RepositoryRestMvcAutoConfiguration;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.sinc.GreetingController;
 import com.netflix.discovery.EurekaClient;
 
+import com.example.sinc.GreetingController;
+import com.example.sinc.ScholarshipComm;
 
+
+@EnableFeignClients
 @SpringBootApplication
 @RestController
 @EnableAutoConfiguration(exclude = RepositoryRestMvcAutoConfiguration.class)
-public class AppDemo implements GreetingController {
+public class AppDemo  implements ScholarshipComm, GreetingController {
  
     @Autowired
     @Lazy
@@ -34,6 +41,30 @@ public class AppDemo implements GreetingController {
     	System.out.println(String.format("Hello from '%s'!", eurekaClient.getApplication(appName).getName()));
         return String.format("Hello from '%s'!", eurekaClient.getApplication(appName).getName());
     }
+
+    @RequestMapping("/get-scholarships")
+	@Override
+	public String scholarship() {
+		//model.addAttribute("scholarship", scholarshipComm.scholarship());
+		System.out.println(scholarshipComm.scholarship());
+    	return "njnjnj";
+	}
+
+
+    @Autowired
+    private ScholarshipComm scholarshipComm;
+    
+   /*
+	@RequestMapping("/get-scholarships-user") // {userId}
+	@Override
+	public String scholarshipUser() { //@PathVariable("userId")Integer id
+		System.out.println("Radi 1");
+		//System.out.println(id);
+		String s=scholarshipComm.scholarshipUser();//id
+		return "radi";
+		
+	}
+*/
 }
 /*
 @EnableDiscoveryClient

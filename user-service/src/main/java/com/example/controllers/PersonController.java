@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,6 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.example.RabbitMqEventHandler;
 import com.example.models.Person;
+
 import com.example.services.PersonService;
 
 @RestController
@@ -64,6 +66,17 @@ public class PersonController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
-
+    @PutMapping("/{id}")
+	public void replaceUser(@RequestBody Person newUser, @PathVariable Integer id) {
+		try {
+			
+			Person savedPerson = personService.update(newUser, id);
+        	//rabbitMqEventHandler.handleAfterSaved(savedPerson);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+		}
     
 }

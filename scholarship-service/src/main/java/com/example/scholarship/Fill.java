@@ -9,6 +9,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+
 import com.example.scholarship.domain.entity.Location;
 import com.example.scholarship.domain.entity.Scholarship;
 import com.example.scholarship.domain.entity.User;
@@ -33,11 +34,14 @@ public class Fill implements ApplicationRunner {
         	userService.deleteAll();
         	locationService.deleteAll();
         	
-        	User user1=new User("username1");
-        	User user2=new User("username2");
+        	User user1=new User("aalic1", "admin", "aalic1@etf.unsa.ba", "Amera Alic");
+        	User user2=new User("abecic1", "admin", "abecic1@etf.unsa.ba", "Ajla Becic");
+            User user3=new User("mbajramovi1", "admin", "mbajramovi1@etf.unsa.ba","Maid Bajramovic");
+            
         	List<User> users=new ArrayList<>();
         	users.add(user1);
         	users.add(user2);
+        	users.add(user3);
         	for (User user : users) {
         		userService.newUser(user);    
             }
@@ -52,8 +56,8 @@ public class Fill implements ApplicationRunner {
         	
             List<Scholarship> scholarships = new ArrayList<>();
             scholarships.add(new Scholarship("Tekst vezan za stipendiju", "www.stipendija1.com", user1, "27/03/2019", l));
-            scholarships.add(new Scholarship("Tekst vezan za stipendiju2", "www.stipendija2.com", user1, "27/03/2019", l ));
-            scholarships.add(new Scholarship("Tekst vezan za stipendiju3", "www.stipendija1.com", user2,"27/03/2019", l ));
+            scholarships.add(new Scholarship("Tekst vezan za stipendiju2", "www.stipendija2.com", user2, "27/03/2019", l ));
+            scholarships.add(new Scholarship("Tekst vezan za stipendiju3", "www.stipendija1.com", user3,"27/03/2019", l ));
             
             for (Scholarship scholarship : scholarships) {
             	scholarshipService.newScholarship(scholarship);
@@ -63,7 +67,7 @@ public class Fill implements ApplicationRunner {
   
             Iterable<Scholarship> allSC = scholarshipService.getAll();
             for (Scholarship scholarship : allSC) {
-                System.out.println(scholarship.toString());
+                //System.out.println(scholarship.toString());
             }
 
          
