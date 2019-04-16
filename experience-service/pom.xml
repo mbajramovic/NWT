@@ -68,9 +68,16 @@
 		</dependency>
 
 		<!-- dependecy za mysql server -->
-		 <dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> 
-			</dependency> 
+		 <dependency> 
+		 	<groupId>mysql</groupId> 
+			 <artifactId>mysql-connector-java</artifactId> 
+		</dependency> 
 
+			<!-- async -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
+		</dependency>
 	</dependencies>
 		<dependencyManagement>
 		<dependencies>

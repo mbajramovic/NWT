@@ -1,5 +1,5 @@
 package com.example;
-
+/*
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -15,27 +15,29 @@ import com.example.sinc.GreetingController;
 import com.netflix.discovery.EurekaClient;
 
 import com.example.sinc.GreetingController;
-import com.example.sinc.ScholarshipComm;
+import com.example.sinc.ScholarshipComm;*/
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 
-@EnableFeignClients
+@EnableDiscoveryClient
 @SpringBootApplication
-@RestController
-@EnableAutoConfiguration(exclude = RepositoryRestMvcAutoConfiguration.class)
-public class AppDemo  implements ScholarshipComm, GreetingController {
- 
+public class AppDemo {
+ /*
     @Autowired
     @Lazy
     private EurekaClient eurekaClient;
  
     @Value("${spring.application.name}")
-    private String appName;
+    private String appName;*/
  
     public static void main(String[] args) {
         SpringApplication.run(AppDemo.class, args);
     }
  
-    @Override
+    /*@Override
     public String greeting() {
     	System.out.println("jnjn");
     	System.out.println(String.format("Hello from '%s'!", eurekaClient.getApplication(appName).getName()));
@@ -48,11 +50,11 @@ public class AppDemo  implements ScholarshipComm, GreetingController {
 		//model.addAttribute("scholarship", scholarshipComm.scholarship());
 		System.out.println(scholarshipComm.scholarship());
     	return "njnjnj";
-	}
+	}*/
 
-
+/*
     @Autowired
-    private ScholarshipComm scholarshipComm;
+    private ScholarshipComm scholarshipComm;*/
     
    /*
 	@RequestMapping("/get-scholarships-user") // {userId}
