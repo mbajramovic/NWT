@@ -1,8 +1,5 @@
 package com.example.controllers;
 
-import com.example.models.Person;
-import com.example.services.PersonService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,11 +10,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.example.RabbitMqEventHandler;
+import com.example.models.Person;
+import com.example.services.PersonService;
+
 @RestController
 @RequestMapping("/user")
 public class PersonController {
     @Autowired
     PersonService personService;
+    @Autowired
+	private RabbitMqEventHandler rabbitMqEventHandler;
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public ResponseEntity getUser(@PathVariable("id") Integer id) {
@@ -43,7 +46,9 @@ public class PersonController {
     @RequestMapping(method = RequestMethod.POST, value = "/new")
     public ResponseEntity newUser(@RequestBody Person person) {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(personService.save(person));
+        	Person savedPerson = personService.save(person);
+        	rabbitMqEventHandler.handleCandidateSave(savedPerson);
+            return ResponseEntity.status(HttpStatus.OK).body(savedPerson);
         }
         catch (Exception ex) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);

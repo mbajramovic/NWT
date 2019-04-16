@@ -1,27 +1,20 @@
 package com.example;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.boot.autoconfigure.data.rest.RepositoryRestMvcAutoConfiguration;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.springframework.cloud.client.discovery.DiscoveryClient;
-import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
 
 
 @SpringBootApplication
 @RestController
+@EnableAutoConfiguration(exclude = RepositoryRestMvcAutoConfiguration.class)
 public class AppDemo implements GreetingController {
  
     @Autowired

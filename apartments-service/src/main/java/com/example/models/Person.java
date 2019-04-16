@@ -27,9 +27,17 @@ public class Person {
 	
 	@Column(name = "username")
 	private String username;
+	
+	public String getPassword() {
+		return password;
+	}
 
-	@Column(name = "mainId")
-	private Integer mainId;
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@Column(name = "password")
+	private String password;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="parent_id")
@@ -40,7 +48,6 @@ public class Person {
 	
 	public Person (String username, Integer mainId) {
 		this.username = username;
-		this.mainId = mainId;
 		this.id = 0;
 	}
 
@@ -58,14 +65,6 @@ public class Person {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public Integer getMainId() {
-		return mainId;
-	}
-
-	public void setMainId(Integer mainId) {
-		this.mainId = mainId;
 	}
 	
 	
