@@ -38,6 +38,7 @@ public class PersonController {
     public ResponseEntity deleteUser(@PathVariable("id") Integer id) {
         try {
             personService.deleteUser(id);
+            rabbitMqEventHandler.handleUserDelete(id);
             return ResponseEntity.status(HttpStatus.OK).body("deleted");
         }
         catch (Exception ex) {

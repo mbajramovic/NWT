@@ -1,11 +1,10 @@
-package com.example.experienceservice.domain.service;
+package com.example.interactionservice.domain.service;
 
 import java.io.IOException;
 
-import com.example.experienceservice.domain.entity.Person;
-import com.example.experienceservice.domain.configurations.PersonQueueConfig;
-
-import com.example.experienceservice.domain.repository.PersonRepository;
+import com.example.interactionservice.domain.configurations.PersonQueueConfig;
+import com.example.interactionservice.domain.entity.Person;
+import com.example.interactionservice.domain.repository.PersonRepository;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -15,10 +14,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AsyncMessageListener {
-
     @Autowired
     private PersonRepository personRepository;
 
+    
     @RabbitListener(queues = "#{personsQueue.name}")
 	public void getPersonsMessage(String personMessage) {
 		System.out.println(personMessage);
@@ -38,7 +37,7 @@ public class AsyncMessageListener {
 		personRepository.save(person);
     }
     
-    @RabbitListener(queues = PersonQueueConfig.PERSON_DELETE_QUEUE)
+     @RabbitListener(queues = PersonQueueConfig.PERSON_DELETE_QUEUE)
 	public void deletePerson(Integer id) {
 		try {
             personRepository.deletePersonByUserId(id);

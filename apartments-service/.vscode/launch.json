@@ -4,13 +4,6 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - AppDemo",
-            "request": "launch",
-            "mainClass": "com.example.AppDemo"
-        },
         {
             "type": "java",
             "name": "Debug (Launch) - Current File",
@@ -19,10 +12,9 @@
         },
         {
             "type": "java",
-            "name": "Debug (Launch)-AppDemo<user-service>",
+            "name": "Debug (Launch)-AppDemo",
             "request": "launch",
-            "mainClass": "com.example.AppDemo",
-            "projectName": "user-service"
+            "mainClass": "com.example.AppDemo"
         }
     ]
 }
