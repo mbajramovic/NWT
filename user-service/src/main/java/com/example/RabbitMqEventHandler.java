@@ -41,14 +41,14 @@ public class RabbitMqEventHandler {
 		
 		logger.info("Person created", person);
 	}
-	/*
+	
 	@HandleAfterSave
     public void handleAfterSaved(Person person) {
         rabbitTemplate.convertAndSend(
-                userUpdatedQueue.getName(), serializeToJson(person));
+        		personQueue.getName(), serializeToJson(person));
         logger.info("Person updated", person);
 }
-	*/
+	
 	private String serializeToJson(Person person) {
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonInString = "";

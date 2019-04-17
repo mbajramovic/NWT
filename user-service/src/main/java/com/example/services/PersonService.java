@@ -51,4 +51,10 @@ public class PersonService {
 			return personRepository.save(newUser);
 		});
     }
+
+	
+		public List<Person> getAll() throws Exception {
+	        return (List<Person>) personRepository.findAll();
+	    }
+	
 }
