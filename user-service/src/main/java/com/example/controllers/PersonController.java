@@ -48,11 +48,11 @@ public class PersonController {
     @RequestMapping(method = RequestMethod.POST, value = "/new")
     public ResponseEntity newUser(@RequestBody Person person) {
         try {
-        	//System.out.println("U controlleru");
+        	System.out.println("U controlleru");
         	Person savedPerson = personService.save(person);
-        	//System.out.println("Spasila");
+        	System.out.println("Spasila");
         	rabbitMqEventHandler.handleCandidateSave(savedPerson);
-        	//System.out.println("Poslala poruku");
+        	System.out.println("Poslala poruku");
         	return ResponseEntity.status(HttpStatus.OK).body(savedPerson);
         }
         catch (Exception ex) {
@@ -62,12 +62,9 @@ public class PersonController {
     @RequestMapping(method = RequestMethod.POST, value = "/newww")
     public ResponseEntity<Person> newwwUser(@RequestBody Person person) {
         try {
-        	System.out.println("U controlleru");
         	System.out.println(person.toString());
         	Person savedPerson = personService.save(person);
-        	System.out.println("Spasila");
         	//rabbitMqEventHandler.handleCandidateSave(savedPerson);
-        	System.out.println("Poslala poruku");
         	return new ResponseEntity<Person>(person, HttpStatus.CREATED);
         }
         catch (Exception ex) {

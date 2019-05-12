@@ -3,9 +3,16 @@ package com.example.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.example.models.Apartment;
 import com.example.services.ApartmentService;
@@ -36,10 +43,16 @@ public class ApartmentController {
 	 * 
 	 * @return Lista oglasa tipa Iterable<Apartment>
 	 */
-	@GetMapping("/getApartments")
-	public Iterable<Apartment> getApartments() {
-		return apartmentService.getAll();
-	}
+	@RequestMapping(method = RequestMethod.GET, value = "/apartments")
+    public ResponseEntity getApartments() {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(apartmentService.getAll());
+        }
+        catch(Exception ex) {
+            System.out.println(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
+        }
+    }
 
 	/**
 	 * Ruta za dobavljanje jednog oglasa iz baze, na osnovu ID-a koji se salje kao
@@ -48,55 +61,52 @@ public class ApartmentController {
 	 * @param id id oglasa za smjestaj.
 	 * @return Apartment ako je pronadjen u bazi, null ako nije.
 	 */
-	@GetMapping("/getApartmentById")
-	public Optional<Apartment> getApartmentById(@RequestParam(value = "id") Integer id) {
-		return apartmentService.getById(id);
-	}
+	 @RequestMapping(method = RequestMethod.GET, value = "/apartment/{id}")
+	    public ResponseEntity getApartmentById(@PathVariable("id") Integer id) {
+	        try {
+	            return ResponseEntity.status(HttpStatus.OK).body(apartmentService.getById(id));
+	        }
+	        catch(Exception ex) {
+	            System.out.println(ex.getLocalizedMessage());
+	            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
+	        }
+	    }
 	
 	/**
-	 * Ruta za dobavljanje svih apartmana na odreðenoj lokaciji
-	 */
-	@GetMapping("/getAllByLocation")
-	public Iterable<Apartment> getAllByLocation(@RequestParam(value = "id") Integer id) {
-		return apartmentService.getAllByLocation(id);
-	}
+	 * Ruta za dobavljanje svih apartmana na odreï¿½enoj lokaciji
+	 */	
+	@RequestMapping(method= RequestMethod.GET, value="/location/{locationId}/apartment")
+    public ResponseEntity getAllByLocation(@PathVariable("locationId") Integer locationId) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(apartmentService.getAllByLocation(locationId));
+        }
+        catch(Exception ex) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
+        }
+    }
 
 	/**
 	 * Ruta za testiranje spremanja oglasa u bazu.
 	 */
-	@GetMapping("/apartmentSave")
-	public String saveApartment(@RequestParam(value = "location") String location,
-			@RequestParam(value = "person") String person, @RequestParam(value = "title") String title) {
-		Apartment apartment = new Apartment();
-
-		try {
-			Integer lok = Integer.valueOf(location);
-			Integer per = Integer.valueOf(person);
-			
-			apartment.setLocation(locationService.getById((Integer) lok).get());
-			apartment.setPerson(personService.getById((Integer) per).get());
-			apartment.setTitle(title);
-			try {
-				apartmentService.save(apartment);
-				return mapper.writeValueAsString(apartmentService.save(apartment));
-			} catch (Exception e) {
-				return e.getLocalizedMessage();
-			}
-		} catch (Exception e1) {
-
-			apartment.setLocation(locationService.getById(null).get());
-			apartment.setPerson(personService.getById(null).get());
-			try {
-				apartmentService.save(apartment);
-				return mapper.writeValueAsString(apartmentService.save(apartment));
-			} catch (Exception e) {
-				return e.getLocalizedMessage();
-			}
-		}
-	}
-
-	@GetMapping("/deleteApartmentById")
-	public void deleteById(@RequestParam(value = "id") Integer id) {
-		apartmentService.deleteById(id);
-	}
+	@RequestMapping(method = RequestMethod.POST, value = "/apartment", consumes = "application/json")
+    public ResponseEntity saveApartment(@RequestBody Apartment apartment) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(apartmentService.save(apartment));
+        }
+        catch(Exception ex) {
+            System.out.println(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bad request", ex);
+        }
+    }
+	
+	@RequestMapping(method = RequestMethod.DELETE, value="/apartment/{id}")
+    public ResponseEntity deleteById(@PathVariable("id") Integer id) {
+        try {
+        	apartmentService.deleteById(id);
+            return ResponseEntity.status(HttpStatus.OK).body("deleted");
+        }
+        catch(Exception ex) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
+        }
+    }
 }
