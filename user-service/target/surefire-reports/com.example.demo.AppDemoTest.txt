@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: com.example.demo.AppDemoTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 3.434 s <<< FAILURE! - in com.example.demo.AppDemoTest
+sincTestGetAll(com.example.demo.AppDemoTest)  Time elapsed: 1.082 s  <<< ERROR!
+org.springframework.web.client.ResourceAccessException: I/O error on GET request for "http://localhost:8060/get-scholarships": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+	at com.example.demo.AppDemoTest.sincTestGetAll(AppDemoTest.java:110)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at com.example.demo.AppDemoTest.sincTestGetAll(AppDemoTest.java:110)
+
+postUserReturnsNewUser(com.example.demo.AppDemoTest)  Time elapsed: 1.209 s  <<< ERROR!
+org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:8060/user/new": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+	at com.example.demo.AppDemoTest.postUserReturnsNewUser(AppDemoTest.java:89)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at com.example.demo.AppDemoTest.postUserReturnsNewUser(AppDemoTest.java:89)
+
