@@ -2,6 +2,8 @@ package com.example.controller;
 
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,7 @@ import com.example.services.LocationService;
 import com.example.services.PersonService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.netflix.client.http.HttpHeaders;
 
 /**
  * Klasa predstavlja RestController. Implementira potrebne rute za manipulaciju
@@ -30,7 +33,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 
 @RestController
-@CrossOrigin(origins = "*")
 public class ApartmentController {
 	@Autowired
 	ApartmentService apartmentService;
@@ -48,8 +50,8 @@ public class ApartmentController {
 	@CrossOrigin(origins = "*")
 	@RequestMapping(method = RequestMethod.GET, value = "/apartments")
     public ResponseEntity getApartments() {
-        try {
-            return ResponseEntity.status(HttpStatus.OK).body(apartmentService.getAll());
+        try {        	
+        	    return ResponseEntity.status(HttpStatus.OK).body(apartmentService.getAll());
         }
         catch(Exception ex) {
             System.out.println(ex.getLocalizedMessage());

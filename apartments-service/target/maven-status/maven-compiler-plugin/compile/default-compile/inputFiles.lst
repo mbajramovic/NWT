@@ -6,9 +6,11 @@ C:\Users\KORISNIK\Desktop\NWT\apartments-service\src\main\java\com\example\servi
 C:\Users\KORISNIK\Desktop\NWT\apartments-service\src\main\java\com\example\repositories\LocationRepository.java
 C:\Users\KORISNIK\Desktop\NWT\apartments-service\src\main\java\com\example\controller\ApartmentController.java
 C:\Users\KORISNIK\Desktop\NWT\apartments-service\src\main\java\com\example\services\PersonService.java
+C:\Users\KORISNIK\Desktop\NWT\apartments-service\src\main\java\com\example\configration\CorsFilter.java
 C:\Users\KORISNIK\Desktop\NWT\apartments-service\src\main\java\com\example\services\ApartmentService.java
 C:\Users\KORISNIK\Desktop\NWT\apartments-service\src\main\java\com\example\configration\PersonQueueConfig.java
 C:\Users\KORISNIK\Desktop\NWT\apartments-service\src\main\java\com\example\Seed.java
+C:\Users\KORISNIK\Desktop\NWT\apartments-service\src\main\java\com\example\configration\WebConfig.java
 C:\Users\KORISNIK\Desktop\NWT\apartments-service\src\main\java\com\example\models\Apartment.java
 C:\Users\KORISNIK\Desktop\NWT\apartments-service\src\main\java\com\example\AppDemo.java
 C:\Users\KORISNIK\Desktop\NWT\apartments-service\src\main\java\com\example\controller\PersonController.java
