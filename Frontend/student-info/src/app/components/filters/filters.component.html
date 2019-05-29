@@ -1,0 +1,46 @@
+<div class="form-check">
+    <div class="row">
+      <h2>Sortiraj</h2>
+      <button class="btn btn-light btn-outline-primary asc-button" id="reverse" (click)="sortChange($event);">
+          <i class="fas fa-sort-amount-up"></i>     
+      </button>
+    </div>
+    <div class="row">
+      <ul style="list-style-type:none;" class="sort-list">
+        <li>
+            <input class="form-check-input checkbox-item" name="sort" type="radio" value="nameSort" id="nameSort">
+            <label class="form-check-label">Name</label>
+        </li>
+        <li>
+          <input class="form-check-input checkbox-item" name="sort" type="radio" value="priceSort" id="priceSort">
+          <label class="form-check-label">Price</label>
+        </li>
+      </ul>
+    </div>
+      <div class="row">
+      <h2>Broj stanara</h2>
+    </div>
+    <div class="row">
+      <ul style="list-style-type:none;" class="sort-list">
+        <li>
+            <input class="form-check-input checkbox-item" name="stanar" type="radio" value="sve" id="nameSort">
+            <label class="form-check-label">Sve</label>
+        </li>
+        <li>
+          <input class="form-check-input checkbox-item" name="stanar" type="radio" value="jedan" id="priceSort">
+          <label class="form-check-label">Jedan</label>
+        </li>
+        <li>
+            <input class="form-check-input checkbox-item" name="stanar" type="radio" value="dva" id="nameSort">
+            <label class="form-check-label">Dva</label>
+        </li>
+        <li>
+          <input class="form-check-input checkbox-item" name="stanar" type="radio" value="tri" id="priceSort">
+          <label class="form-check-label">Tri</label>
+        </li>
+      </ul>
+    </div>
+    <h4></h4>
+      
+  </div>
+  

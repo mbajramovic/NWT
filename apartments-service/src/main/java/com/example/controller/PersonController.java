@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,6 +30,7 @@ public class PersonController {
 	/** Ruta za dobavljanje svih korisnika.
      * @return Lista oglasa tipa Iterable<Person>
     */
+	@CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.GET, value = "/persons")
     public ResponseEntity getPersons() {
         try {
@@ -44,6 +46,7 @@ public class PersonController {
      * @param id id korisnika.
      * @return Person ako je pronadjen u bazi, null ako nije.
     */
+	@CrossOrigin(origins = "*")
     @RequestMapping(method=RequestMethod.GET, value="/{id}")
     public ResponseEntity getPersonById(@PathVariable("id") Integer id) {
         try {
@@ -53,7 +56,8 @@ public class PersonController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
-    
+	
+	@CrossOrigin(origins = "*")
     /** Ruta za testiranje spremanja korisnika u bazu.
     */
     @RequestMapping(method=RequestMethod.POST, value="")
@@ -66,6 +70,7 @@ public class PersonController {
         }
     }
     
+	@CrossOrigin(origins = "*")
     @RequestMapping(method=RequestMethod.DELETE, value="/{id}")
     public ResponseEntity deleteById(@PathVariable("id") Integer id) {
         try {

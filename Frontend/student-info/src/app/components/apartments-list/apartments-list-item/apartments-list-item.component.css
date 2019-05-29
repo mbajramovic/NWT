@@ -1,0 +1,12 @@
+.container{
+    border: 1px solid blue;
+    margin: 4px;
+}
+
+img{
+    padding: 3px;
+}
+
+.Location{
+    float: right;
+}

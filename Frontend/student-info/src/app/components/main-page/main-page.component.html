@@ -1,0 +1,10 @@
+
+<ngx-headroom duration="500" easing="ease-in-out"><app-header  id="navbar"></app-header></ngx-headroom>
+        <div class="row">
+                <div class="col-2">
+                        <app-filters  class="filters"></app-filters> 
+                </div>   
+                <div class="col-9">
+                        <app-apartments-list [search]="search" class="product-list"></app-apartments-list>
+        </div>
+</div>

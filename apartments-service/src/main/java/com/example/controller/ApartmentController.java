@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,6 +30,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 
 @RestController
+@CrossOrigin(origins = "*")
 public class ApartmentController {
 	@Autowired
 	ApartmentService apartmentService;
@@ -43,6 +45,7 @@ public class ApartmentController {
 	 * 
 	 * @return Lista oglasa tipa Iterable<Apartment>
 	 */
+	@CrossOrigin(origins = "*")
 	@RequestMapping(method = RequestMethod.GET, value = "/apartments")
     public ResponseEntity getApartments() {
         try {
@@ -61,6 +64,7 @@ public class ApartmentController {
 	 * @param id id oglasa za smjestaj.
 	 * @return Apartment ako je pronadjen u bazi, null ako nije.
 	 */
+	@CrossOrigin(origins = "*")
 	 @RequestMapping(method = RequestMethod.GET, value = "/apartment/{id}")
 	    public ResponseEntity getApartmentById(@PathVariable("id") Integer id) {
 	        try {
@@ -75,6 +79,7 @@ public class ApartmentController {
 	/**
 	 * Ruta za dobavljanje svih apartmana na odre�enoj lokaciji
 	 */	
+	@CrossOrigin(origins = "*")
 	@RequestMapping(method= RequestMethod.GET, value="/location/{locationId}/apartment")
     public ResponseEntity getAllByLocation(@PathVariable("locationId") Integer locationId) {
         try {
@@ -88,6 +93,7 @@ public class ApartmentController {
 	/**
 	 * Ruta za testiranje spremanja oglasa u bazu.
 	 */
+	@CrossOrigin(origins = "*")
 	@RequestMapping(method = RequestMethod.POST, value = "/apartment", consumes = "application/json")
     public ResponseEntity saveApartment(@RequestBody Apartment apartment) {
         try {
@@ -98,7 +104,7 @@ public class ApartmentController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bad request", ex);
         }
     }
-	
+	@CrossOrigin(origins = "*")
 	@RequestMapping(method = RequestMethod.DELETE, value="/apartment/{id}")
     public ResponseEntity deleteById(@PathVariable("id") Integer id) {
         try {

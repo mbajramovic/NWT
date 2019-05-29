@@ -1,0 +1,6 @@
+<!--<app-home></app-home>-->
+<ngx-headroom duration="500" easing="ease-in-out">
+        <app-header (changed)="onChanged($event)" id="navbar" (registrateChanged)="onRegistrateChanged($event)" [isRegistrateClicked]="isRegistrateClicked"></app-header>
+</ngx-headroom>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,5 @@
+<ul style="list-style-type:none;" id="apartmentList" *ngIf="apartments">
+    <li *ngFor="let item of apartments" class="apartment-list-element">
+          <app-apartments-list-item [apartment]="item" [search]="search"></app-apartments-list-item>
+      </li>
+</ul>

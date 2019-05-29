@@ -1,0 +1,20 @@
+<div class="container" *ngIf="apartment">
+    <div class="row">
+      <div class="col-3 column">
+        <img src="../../../../assets/images/apartment.png" class="apartment-img">
+      </div>
+      <div class="col-9">
+        <div class="row custom-row">
+          <h1>{{ apartment.description }}</h1>
+        </div>
+        <div class="row custom-row">
+          <p class="description">{{ apartment.title }}</p>
+        </div>
+        <div class="row custom-row">
+          <div class="col-6 Location">
+            <h3>{{ apartment.location.city }}, {{ apartment.location.country }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
