@@ -1,37 +1,50 @@
-.form-check{
+.form-check {
     margin-top: 40%;
 }
 
-label{
+.big-checkbox {
+    width: 17px;
+    height: 17px;
+}
+
+.big-checkbox-label {
     font-size: 20px;
 }
 
-h4{
-    font-weight: bold;    
+label {
+    font-size: 20px;
 }
 
-h2{
+h4 {
+    font-weight: bold;
+}
+
+h2 {
     color: blue;
 }
 
-.checkbox-item, ul, h2 {
+.checkbox-item,
+ul,
+h2 {
     padding-left: 2.7vmin;
 }
 
-.sort-list{
+.sort-list {
     padding-left: 5.4vmin;
 }
 
-.asc-icon, .asc-button{
+.asc-icon,
+.asc-button {
     height: 3vmin;
     width: 3.7vmin;
 }
 
-.asc-button{
+.asc-button {
     margin-left: 5px;
 }
 
-.col-2, .col-6{
+.col-2,
+.col-6 {
     padding: 2px;
 }
 
@@ -39,9 +52,20 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */
     -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    margin: 0;
+    /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 input[type=number] {
-    -moz-appearance:textfield; /* Firefox */
+    -moz-appearance: textfield;
+    /* Firefox */
+}
+
+.dropdown-item {
+    background-color: white;
+}
+
+select {
+    width: 100%;
+    margin-bottom: 10px;
 }

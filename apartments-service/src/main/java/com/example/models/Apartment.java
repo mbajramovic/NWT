@@ -24,11 +24,11 @@ public class Apartment {
     private Integer id;
 	
 	@Column(name = "description")
-	@Size(max = 500, message="Opis ne može biti duži od 500 karaktera.")
+	@Size(max = 500, message="Opis ne moï¿½e biti duï¿½i od 500 karaktera.")
 	private String description;
 
 	@Column(name = "title")
-	@Size(max =50, message="Naslov ne može biti duži od 50 karaktera.")
+	@Size(max =50, message="Naslov ne moï¿½e biti duï¿½i od 50 karaktera.")
 	private String title;
 	
 	@ManyToOne
@@ -40,6 +40,9 @@ public class Apartment {
 	 @JoinColumn(name="location_id", nullable=false)
 	@NotNull
 	private Location location;
+	
+	@Column(name = "image")
+	private String image;
 
 	/*@Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -50,12 +53,13 @@ public class Apartment {
 	}
 	
 	
-	public Apartment(String description, String title, Person person, Location location, Date date) {
+	public Apartment(String description, String title, Person person, Location location, String image) {
 		super();
 		this.description = description;
 		this.title = title;
 		this.person = person;
 		this.location = location;
+		this.image = image;
 		//this.date = date;
 	}
 
@@ -65,6 +69,12 @@ public class Apartment {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
 	}
 	public String getTitle() {
 		return title;

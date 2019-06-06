@@ -27,5 +27,10 @@ export class HeaderComponent implements OnInit {
     this._communicateService.onVisablilityChanged(false);
   }
 
+  onSearchChanged(event: any){
+    console.log(event.target.value);
+    this._communicateService.onSearchChanged(event.target.value);
+  }
+
 
 }

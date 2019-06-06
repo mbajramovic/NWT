@@ -12,10 +12,10 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { ApartmentsListComponent } from './components/apartments-list/apartments-list.component';
-import { ApartmentsListItemComponent } from './components/apartments-list/apartments-list-item/apartments-list-item.component';
 import { FiltersComponent } from './components/filters/filters.component';
-import { SearchComponent } from './components/search/search.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SaveApartmentComponent } from './components/save-apartment/save-apartment.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -26,9 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     MainPageComponent,
     ApartmentsListComponent,
-    ApartmentsListItemComponent,
     FiltersComponent,
-    SearchComponent
+    SaveApartmentComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     HeadroomModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,    
+    MDBBootstrapModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

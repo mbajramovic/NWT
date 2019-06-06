@@ -7,13 +7,15 @@ export class Apartment {
     public title: string;
     public person: Person;
     public location: Location;
+    public image: string;
 
     constructor(
         id: number,
         description: string,
         title: string,
         person: Person,
-        location: Location
+        location: Location,
+        image: string
     ){
 
         this.id = id;
@@ -21,5 +23,6 @@ export class Apartment {
         this.title = title;
         this.person = person;
         this.location = location;
+        this.image = image;
     }
 }

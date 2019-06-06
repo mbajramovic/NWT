@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommunicateService } from 'src/app/services/communicate.service';
 
 @Component({
   selector: 'app-register',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _communicationService: CommunicateService) { }
 
   ngOnInit() {
+  }
+
+  onRegister(event: any){
+    this._communicationService.onAuthorized(true);
   }
 
 }

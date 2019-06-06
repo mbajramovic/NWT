@@ -1,46 +1,53 @@
 <div class="form-check">
     <div class="row">
-      <h2>Sortiraj</h2>
-      <button class="btn btn-light btn-outline-primary asc-button" id="reverse" (click)="sortChange($event);">
+        <h2>Sortiraj</h2>
+        <button class="btn btn-light btn-outline-primary asc-button" id="reverse" (click)="sortChange($event);">
           <i class="fas fa-sort-amount-up"></i>     
       </button>
     </div>
     <div class="row">
-      <ul style="list-style-type:none;" class="sort-list">
-        <li>
-            <input class="form-check-input checkbox-item" name="sort" type="radio" value="nameSort" id="nameSort">
-            <label class="form-check-label">Name</label>
-        </li>
-        <li>
-          <input class="form-check-input checkbox-item" name="sort" type="radio" value="priceSort" id="priceSort">
-          <label class="form-check-label">Price</label>
-        </li>
-      </ul>
-    </div>
-      <div class="row">
-      <h2>Broj stanara</h2>
+        <ul style="list-style-type:none;" class="sort-list">
+            <li>
+                <input class="form-check-input checkbox-item big-checkbox" name="sort" type="radio" value="nameSort" id="nameSort">
+                <label class="form-check-label big-checkbox-label">Name</label>
+            </li>
+            <li>
+                <input class="form-check-input checkbox-item big-checkbox" name="sort" type="radio" value="priceSort" id="priceSort">
+                <label class="form-check-label big-checkbox-label">Price</label>
+            </li>
+        </ul>
     </div>
     <div class="row">
-      <ul style="list-style-type:none;" class="sort-list">
-        <li>
-            <input class="form-check-input checkbox-item" name="stanar" type="radio" value="sve" id="nameSort">
-            <label class="form-check-label">Sve</label>
-        </li>
-        <li>
-          <input class="form-check-input checkbox-item" name="stanar" type="radio" value="jedan" id="priceSort">
-          <label class="form-check-label">Jedan</label>
-        </li>
-        <li>
-            <input class="form-check-input checkbox-item" name="stanar" type="radio" value="dva" id="nameSort">
-            <label class="form-check-label">Dva</label>
-        </li>
-        <li>
-          <input class="form-check-input checkbox-item" name="stanar" type="radio" value="tri" id="priceSort">
-          <label class="form-check-label">Tri</label>
-        </li>
-      </ul>
+        <h2>Broj stanara</h2>
+    </div>
+    <div class="row">
+        <ul style="list-style-type:none;" class="sort-list">
+            <li>
+                <input class="form-check-input checkbox-item big-checkbox" name="stanar" type="radio" value="sve" id="nameSort">
+                <label class="form-check-label big-checkbox-label">Sve</label>
+            </li>
+            <li>
+                <input class="form-check-input checkbox-item big-checkbox" name="stanar" type="radio" value="jedan" id="priceSort">
+                <label class="form-check-label big-checkbox-label">Jedan</label>
+            </li>
+            <li>
+                <input class="form-check-input checkbox-item big-checkbox" name="stanar" type="radio" value="dva" id="nameSort">
+                <label class="form-check-label big-checkbox-label">Dva</label>
+            </li>
+            <li>
+                <input class="form-check-input checkbox-item big-checkbox" name="stanar" type="radio" value="tri" id="priceSort">
+                <label class="form-check-label big-checkbox-label">Tri</label>
+            </li>
+        </ul>
     </div>
     <h4></h4>
-      
-  </div>
-  
+    <div class="row">
+        <div class="col-sm-12">
+            <select class="btn btn-primary" [(ngModel)]="selectedCountry" (change)="countryChanged()">
+                <option class="dropdown-item" value="0" selected>Sve</option>
+                <option class="dropdown-item" *ngFor="let country of countries" value="{{ country }}">{{ country }}</option>
+              </select>
+        </div>
+    </div>
+
+</div>

@@ -40,6 +40,10 @@ public class LocationService {
         return locationRepository.findById(id);
     }
 	
+	public Iterable<String> getLocationsDistinct() {
+        return locationRepository.findDistinctByCountry();
+    }
+	
 	public void deleteById(Integer id) {
 		locationRepository.deleteById(id);
 	}

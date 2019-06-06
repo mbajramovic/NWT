@@ -57,6 +57,18 @@ public class LocationController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
+	
+	@CrossOrigin(origins = "*")
+    @RequestMapping(method = RequestMethod.GET, value = "/location/countries")
+    public ResponseEntity getLocationsDistinct() {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(locationService.getLocationsDistinct());
+        }
+        catch(Exception ex) {
+            System.out.println(ex.getLocalizedMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
+        }
+    }
     
     /** Ruta za testiranje spremanja korisnika u bazu.
     */    
