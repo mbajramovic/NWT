@@ -1,6 +1,0 @@
-FROM openjdk:8-jre-alpine
-
-COPY ./target/apartments-service-0.0.1-SNAPSHOT.jar /usr/src/apartments-service/
-WORKDIR /usr/src/apartments-service
-EXPOSE 8082
-CMD ["java", "-jar", "apartments-service-0.0.1-SNAPSHOT.jar"]

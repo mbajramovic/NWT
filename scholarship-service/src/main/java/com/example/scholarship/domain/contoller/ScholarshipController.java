@@ -53,7 +53,7 @@ public class ScholarshipController {
 		
 		}
 	
-	@GetMapping("/")
+	@GetMapping("/one")
 	public Optional<Scholarship> getScholarship(@RequestParam(value="id") Integer id) {
 		try {
 			return scholarshipService.getById(id);

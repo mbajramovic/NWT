@@ -43,8 +43,7 @@ public class Seed implements ApplicationRunner {
             
         	Integer i = 0;
         	for(Location location : locations){
-        		apartmentService.save(new Apartment("Ovo su detalji stana i opis oglasa.", "Oglas za stan " + i.toString(), persons.get(i), location, null)).getId();
-        		apartmentService.save(new Apartment("Ovo su detalji stana i opis oglasa.", "Oglas za stan " + i.toString(), persons.get(i), location, "https://media.equityapartments.com/images/c_crop,x_0,y_0,w_1920,h_1080/c_fill,w_1920,h_1080/q_80/4105-6/2201-wilson-apartments-building.jpg")).getId();
+        		apartmentService.save(new Apartment("Oglas za stan " + i.toString(), "Ovo su detalji stana i opis oglasa.", persons.get(i), location, new Date(2019, 3, 27))).getId();
         		i += 1;
         	}
 

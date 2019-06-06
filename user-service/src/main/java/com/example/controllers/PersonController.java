@@ -1,20 +1,41 @@
 package com.example.controllers;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+
 import org.springframework.web.server.ResponseStatusException;
 
 import com.example.RabbitMqEventHandler;
+import com.example.exception.EntityNotFoundException;
 import com.example.models.Person;
+import com.example.request.AuthenticationRequest;
+import com.example.response.JWTTokenResponse;
 import com.example.services.PersonService;
+
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.SignatureException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 @RequestMapping("/user")
@@ -95,6 +116,7 @@ public class PersonController {
     
     @GetMapping("/")
 	public Iterable<Person> allPersons() {
+    	
 		try {
 			return personService.getAll();
 		} catch (Exception e) {
@@ -104,5 +126,17 @@ public class PersonController {
 		return null;
 		
 		}
+    
+    @PostMapping("/login")
+    public ResponseEntity createCustomer(@RequestBody AuthenticationRequest request) {
+        System.out.println("evo u contoleru");
+    	return new ResponseEntity<>(personService.generateJWTToken(request.getUsername(), request.getPassword()), HttpStatus.OK);
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<String> handleEntityNotFoundException(EntityNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    
     
 }

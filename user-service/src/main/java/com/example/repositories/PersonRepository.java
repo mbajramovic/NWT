@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.models.Person;
 
@@ -14,4 +15,9 @@ public interface PersonRepository extends CrudRepository<Person, Integer>{
     @Query
         ("select u from Person u where u.username = :username and u.password = :password")
     public List<Person> findPerson(@Param("username")String username, @Param("password")String password);
+    @Query
+    ("select u from Person u where u.username = :username")
+
+    Optional<Person> findOneByUsername(@Param("username")String username);
+
 }

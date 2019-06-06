@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.example.models.Person;
@@ -15,7 +16,7 @@ import com.example.services.PersonService;
 public class Seed implements ApplicationRunner {
     @Autowired
     PersonService personService;
-    
+    PasswordEncoder passwordEncoder;
     
     public void run(ApplicationArguments args) throws Exception {
         try {
@@ -26,7 +27,7 @@ public class Seed implements ApplicationRunner {
             persons.add(new Person("Maid Bajramovic", "mbajramovi1", "admin", "mbajramovi1@etf.unsa.ba"));
             
             persons = (List<Person>) personService.saveAll(persons);
-
+            
          
         }
         catch(Exception ex) {

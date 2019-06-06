@@ -11,7 +11,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="STUDENT")
+@Table(name="person")
 public class Person {
 	@Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STUDENT_SEQ")

@@ -5,7 +5,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,7 +29,6 @@ public class LocationController {
 	/** Ruta za dobavljanje svih lokacija.
      * @return Lista oglasa tipa Iterable<Location>
     */
-	@CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.GET, value = "/locations")
     public ResponseEntity getLocations() {
         try {
@@ -46,7 +44,6 @@ public class LocationController {
      * @param id id lokacije.
      * @return Location ako je pronadjen u bazi, null ako nije.
     */
-	@CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.GET, value = "/location/{id}")
     public ResponseEntity getLocationById(@PathVariable("id") Integer id) {
         try {
@@ -57,22 +54,9 @@ public class LocationController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
-	
-	@CrossOrigin(origins = "*")
-    @RequestMapping(method = RequestMethod.GET, value = "/location/countries")
-    public ResponseEntity getLocationsDistinct() {
-        try {
-            return ResponseEntity.status(HttpStatus.OK).body(locationService.getLocationsDistinct());
-        }
-        catch(Exception ex) {
-            System.out.println(ex.getLocalizedMessage());
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
-        }
-    }
     
     /** Ruta za testiranje spremanja korisnika u bazu.
     */    
-	@CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.POST, value = "/location", consumes = "application/json")
     public ResponseEntity saveLocation(@RequestBody Location location) {
         try {
@@ -84,7 +68,6 @@ public class LocationController {
         }
     }
     
-	@CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.DELETE, value="/location/{id}")
     public ResponseEntity deleteById(@PathVariable("id") Integer id) {
         try {
