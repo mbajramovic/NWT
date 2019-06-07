@@ -1,0 +1,25 @@
+<button type="button" class="btn btn-primary btn-lg reg-button scholarship-list" [routerLink]="['/savescholarship']">Dodaj novi oglas</button>
+<div class="row">
+    <div class="col-sm-6 col-md-3 full-flex" *ngFor="let scholarship of filteredScholarships">
+        <div class="card mb-3">
+            <div class="card-body">
+                <img *ngIf="scholarship.image; else defaultImg" class="card-img-top img-responsive full-height" src="../../../../assets/images/scholarship.png">
+                <ng-template #defaultImg>
+                    <img class="card-img-top img-responsive full-height" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsiufs7KzFnTkkQ4VuAveNjPFiwUdX-z6LSHEXXXO1s-C-8XAa}">
+                </ng-template>
+                <hr>
+                <h4 class="card-title"><b>{{ scholarship.text }}</b></h4>
+                <p class="card-text">Više informacija pronadjite
+                    <a (click)="goToLink(scholarship.link)">ovdje</a>.</p>
+                <div class="row">
+                    <div class="col-7">
+                        <p class="card-text">{{ scholarship.location.city }}, {{ scholarship.location.country }}</p>
+                    </div>
+                    <div class="col-5">
+                        <p class="card-text"><b>{{ scholarship.date }} </b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

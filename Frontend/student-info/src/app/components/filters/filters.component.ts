@@ -40,4 +40,9 @@ export class FiltersComponent implements OnInit {
   countryChanged(){
     this.communicateService.onCountryChanged(this.selectedCountry);
   }
+
+  onChecked(event: any){
+    console.log(event.target.value);
+    this.communicateService.onSortChanged(event.target.value);
+  }
 }

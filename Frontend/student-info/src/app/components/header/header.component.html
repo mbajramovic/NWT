@@ -1,8 +1,7 @@
 <div class="sidenav">
     <app-filters></app-filters>
-    <button type="button" class="btn btn-dark btn-lg reg-button" [routerLink]="['/saveapartment']">Dodaj novi oglas</button>
 </div>
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar fixed-top navbar-expand-lg navbar-primary bg-primary">
     <a class="navbar-brand" href="#">Student Info Portal</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -13,18 +12,15 @@
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Stipendije</a>
+                <a class="nav-link" [routerLink]="['/scholarships']">Stipendije</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Smještaj</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Iskustva</a>
+                <a class="nav-link" [routerLink]="['/apartments']">Smještaj</a>
             </li>
         </ul>
     </div>
     <form class="form-inline">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" (change)="onSearchChanged($event)">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
     </form>
 </nav>

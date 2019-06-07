@@ -8,6 +8,7 @@ export class Apartment {
     public person: Person;
     public location: Location;
     public image: string;
+    public price: number;
 
     constructor(
         id: number,
@@ -15,7 +16,8 @@ export class Apartment {
         title: string,
         person: Person,
         location: Location,
-        image: string
+        image: string,
+        price: number
     ){
 
         this.id = id;
@@ -24,5 +26,6 @@ export class Apartment {
         this.person = person;
         this.location = location;
         this.image = image;
+        this.price = price;
     }
 }

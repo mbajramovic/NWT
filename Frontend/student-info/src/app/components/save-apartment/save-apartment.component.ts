@@ -24,7 +24,7 @@ export class SaveApartmentComponent implements OnInit {
   }
 
   onSaveClicked(){
-    var apartment = new Apartment(0, this.description, this.title, new Person(100, 'abecic', 'abecic'), new Location(101, '', '',''), '')
+    var apartment = new Apartment(0, this.description, this.title, new Person(100, 'abecic', 'abecic', 'User'), new Location(101, this.address, this.city, ''), '', +this.price)
     var res = this._apartmentService.postApartments(apartment);
     console.log(res);
   }

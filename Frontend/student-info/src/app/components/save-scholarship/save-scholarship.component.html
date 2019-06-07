@@ -1,0 +1,40 @@
+<div class="container">
+
+    <table class="form-check">
+        <tr>
+            <th>
+                <h4>Tekst:</h4>
+            </th>
+            <th class="input-column"><input type="text" [(ngModel)]="text"></th>
+        </tr>
+        <tr>
+            <th>
+                <h4>Link:</h4>
+            </th>
+            <th class="input-column"><input type="text" [(ngModel)]="link"></th>
+        </tr>
+        <tr>
+            <th>
+                <h4>Grad:</h4>
+            </th>
+            <th class="input-column"><input type="text" [(ngModel)]="city"></th>
+        </tr>
+        <tr>
+            <th>
+                <h4>Država:</h4>
+            </th>
+            <th class="input-column"><input type="text" [(ngModel)]="country"></th>
+        </tr>
+        <tr>
+            <th>
+                <h4>Objavio:</h4>
+            </th>
+            <th class="input-column">Maid Bajramović</th>
+        </tr>
+        <tr>
+            <th>
+            </th>
+            <th class="input-column"><button type="button" class="btn btn-primary btn-lg reg-button" (click)="onSaveClicked()">Spremi oglas</button></th>
+        </tr>
+    </table>
+</div>

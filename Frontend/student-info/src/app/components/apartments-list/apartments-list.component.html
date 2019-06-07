@@ -1,4 +1,5 @@
-<div class="row apartment-list">
+<button type="button" class="btn btn-primary btn-lg reg-button apartment-list" [routerLink]="['/saveapartment']">Dodaj novi oglas</button>
+<div class="row">
     <div class="col-sm-6 col-md-3 full-flex" *ngFor="let apartment of filteredApartments">
         <div class="card mb-3">
             <div class="card-body">
@@ -8,8 +9,15 @@
                 </ng-template>
                 <hr>
                 <h4 class="card-title"><b>{{ apartment.title }}</b></h4>
-                <p class="card-text"><b>{{ apartment.description }}</b></p>
-                <small class="card-text">{{ apartment.location.city }}, {{ apartment.location.country }}</small>
+                <p class="card-text">{{ apartment.description }}</p>
+                <div class="row">
+                    <div class="col-9">
+                        <p class="card-text">{{ apartment.location.city }}, {{ apartment.location.country }}</p>
+                    </div>
+                    <div class="col-3">
+                        <p class="card-text"><b>{{ apartment.price }} €</b></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

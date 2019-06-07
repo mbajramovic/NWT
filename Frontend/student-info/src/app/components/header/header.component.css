@@ -25,7 +25,7 @@
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 25px;
-    color: #818181;
+    color: #f1f1f1;
     display: block;
 }
 
@@ -55,4 +55,10 @@
     .sidenav a {
         font-size: 18px;
     }
+}
+
+.nav-item a,
+.navbar-brand {
+    color: #f1f1f1;
+    font-style: inherit;
 }
