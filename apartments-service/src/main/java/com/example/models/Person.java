@@ -39,6 +39,17 @@ public class Person {
 	@Column(name = "password")
 	private String password;
 	
+	@Column(name = "role")
+	private String role;
+	
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="parent_id")
 	//@OnDelete(action = OnDeleteAction.CASCADE)

@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,12 +22,14 @@ import com.example.scholarship.domain.exception.EntityNotFoundException;
 import com.example.scholarship.domain.service.LocationService;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/location")
 public class LocationContoller {
 	
 	@Autowired
 	LocationService locationService;
-	
+
+	@CrossOrigin(origins = "*")
 	@PostMapping("")
 	public Location saveLocation(@RequestBody Location location) {
 		try {
@@ -38,7 +41,8 @@ public class LocationContoller {
 		return location;
 		
 	}
-		
+
+	@CrossOrigin(origins = "*")
 	@GetMapping("/")
 	public Iterable<Location> getAllLocations() {
 		try {
@@ -50,7 +54,8 @@ public class LocationContoller {
 		return null;
 		
 		 }
-	
+
+	@CrossOrigin(origins = "*")
 	@GetMapping("")
 	public Optional<Location> getLocation (@RequestParam(value="id") Integer id) {
 		try {
@@ -62,7 +67,8 @@ public class LocationContoller {
 		return null;
 		
 		}
-	
+
+	@CrossOrigin(origins = "*")
 	@DeleteMapping ("/")
 	public void deleteAllLocations() {
 		try {
@@ -73,7 +79,8 @@ public class LocationContoller {
 		}
 			
 		}
-	
+
+	@CrossOrigin(origins = "*")
 	@DeleteMapping("")
 	public void deleteLocation (@RequestParam(value="id") Integer id) {
 		try {
@@ -85,7 +92,8 @@ public class LocationContoller {
 			
 		}
 	
-	
+
+	@CrossOrigin(origins = "*")
 	@PutMapping("")
 	public void replaceLocation(@RequestBody Location newLocation, @PathVariable Integer id) {
 		try {

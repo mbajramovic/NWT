@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,12 +22,14 @@ import com.example.scholarship.domain.exception.EntityNotFoundException;
 import com.example.scholarship.domain.service.UserService;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/user") 
 public class UserController {
 	
 	@Autowired
 	UserService userService;
-	
+
+	@CrossOrigin(origins = "*")
 	@PostMapping("")
 	public void saveUser(@RequestBody User user) {
 		try {
@@ -38,7 +41,8 @@ public class UserController {
 		}
 			
 		}
-	
+
+	@CrossOrigin(origins = "*")
 	@GetMapping("/")
 	public Iterable<User> allUsers() {
 		try {
@@ -50,7 +54,8 @@ public class UserController {
 		return null;
 		
 		}
-	
+
+	@CrossOrigin(origins = "*")
 	@GetMapping("")
 	public Optional<User> getUser(@RequestParam(value="id") Integer id) {
 		try {
@@ -62,7 +67,8 @@ public class UserController {
 		return null;
 		
 		}
-	
+
+	@CrossOrigin(origins = "*")
 	@DeleteMapping("/")
 	public void deleteUsers() {
 		try {
@@ -73,7 +79,8 @@ public class UserController {
 		}
 			
 		}
-	
+
+	@CrossOrigin(origins = "*")
 	@DeleteMapping("")
 	public void deleteUser(@RequestParam(value="id") Integer id) {
 		try {
@@ -84,7 +91,8 @@ public class UserController {
 		}
 			
 		}
-	
+
+	@CrossOrigin(origins = "*")
 	@PutMapping("/{id}")
 	public void replaceUser(@RequestBody User newUser, @PathVariable Integer id) {
 		try {

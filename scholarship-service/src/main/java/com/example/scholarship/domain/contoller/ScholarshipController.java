@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,12 +24,14 @@ import com.example.scholarship.domain.exception.ScholarshipNotFoundException;
 import com.example.scholarship.domain.service.ScholarshipService;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/scholarship") 
 public class ScholarshipController {
 	
 	@Autowired
 	ScholarshipService scholarshipService;
-	
+
+	@CrossOrigin(origins = "*")
 	@PostMapping("")
 	public Scholarship saveScholarship(@RequestBody Scholarship scholarship) {
 		try {
@@ -40,7 +43,8 @@ public class ScholarshipController {
 		
 		return null;
 	}
-	
+
+	@CrossOrigin(origins = "*")
 	@GetMapping("")
 	public Iterable<Scholarship> allScholarships() {
 		try {
@@ -52,7 +56,8 @@ public class ScholarshipController {
 		return null;
 		
 		}
-	
+
+	@CrossOrigin(origins = "*")
 	@GetMapping("/")
 	public Optional<Scholarship> getScholarship(@RequestParam(value="id") Integer id) {
 		try {
@@ -65,7 +70,8 @@ public class ScholarshipController {
 				
 	}
 	
-	
+
+	@CrossOrigin(origins = "*")
 	@GetMapping("/user/{userId}")
 	public Iterable<Scholarship> scholarshipsByUser(@PathVariable("userId") Integer userId) {
 		try {
@@ -77,7 +83,8 @@ public class ScholarshipController {
 		return null;
 		
 		}
-	
+
+	@CrossOrigin(origins = "*")
 	@DeleteMapping("")
 	public void deleteScholarships() {
 		try {
@@ -89,7 +96,8 @@ public class ScholarshipController {
 		}
 		
 		}
-	
+
+	@CrossOrigin(origins = "*")
 	@DeleteMapping("/")
 	public void deleteScholarship(@RequestParam(value="id") Integer id) {
 		try {
@@ -99,7 +107,8 @@ public class ScholarshipController {
 			 //return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage());
 				}
 		}
-	
+
+	@CrossOrigin(origins = "*")
 	@PutMapping("/{id}")
 	public void replaceScholarship(@RequestBody Scholarship scholarship, @PathVariable Integer id) {
 		try {

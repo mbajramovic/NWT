@@ -39,7 +39,7 @@ public class Scholarship {
 	@Column(name="text")
 	private String text;
 	
-	@NotNull
+	
 	@Column(name="link")
 	private String link;
 
@@ -48,7 +48,6 @@ public class Scholarship {
 	@JoinColumn(name="userId", nullable=false)
 	private User user;
 	
-	@NotNull
 	@Column(name = "postDate")
 	private String date;
 
@@ -112,7 +111,7 @@ public class Scholarship {
 		super();
 		this.id = id;
 		if(text.matches(patternTekst))this.text = text;
-		if(link.matches(patternLink)) this.link = link;
+		this.link = link;
 		this.user = user;
 		if(date.matches(patternDate)) this.date = date;
 		this.location = location;

@@ -21,7 +21,7 @@ import javax.validation.constraints.Size;
 		@GeneratedValue(strategy=GenerationType.AUTO)
 		private Integer id;
 		
-		@NotNull
+		
 		@Size(min=3) //provjeriti
 		@Column(name = "university")
 		private String university;

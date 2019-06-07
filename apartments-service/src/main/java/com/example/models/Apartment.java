@@ -43,12 +43,26 @@ public class Apartment {
 	
 	@Column(name = "image")
 	private String image;
+	
+	@Column(name = "price")
+	private double price;
+	
 
 	/*@Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "postDate")
 	private Date date;*/
 	
+	public double getPrice() {
+		return price;
+	}
+
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+
 	public Apartment() {
 	}
 	
