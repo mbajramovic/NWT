@@ -34,15 +34,19 @@ public class Person {
 	
 	@Column(name = "name")
 	private String name;
+
+	@Column(name="role")
+	private String role;
 	
 	public Person() {}
 
-	public Person(String name, String username, String password, String email) {
+	public Person(String name, String username, String password, String email, String role) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.name = name;
+		this.role = role;
 	}
 
 	public Integer getId() {
@@ -83,6 +87,14 @@ public class Person {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getRole() {
+		return this.role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 	

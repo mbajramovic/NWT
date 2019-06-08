@@ -92,7 +92,7 @@ public class PersonController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
-    
+    /*
     @GetMapping("/")
 	public Iterable<Person> allPersons() {
 		try {
@@ -103,6 +103,6 @@ public class PersonController {
 		}
 		return null;
 		
-		}
+		}*/
     
 }
