@@ -34,15 +34,13 @@ public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
 	            // handle an authorized attempts 
 	            .exceptionHandling().authenticationEntryPoint((req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED))
 	        .and()
-		    // Add a filter to validate user credentials and add token in the response header
-			
-		    // What's the authenticationManager()? 
-		    // An object provided by WebSecurityConfigurerAdapter, used to authenticate the user passing user's credentials
-		    // The filter needs this auth manager to authenticate the user.
+		  
 		    .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig))	
 		.authorizeRequests()
 		    // allow all POST requests 
-		    .antMatchers(HttpMethod.POST, jwtConfig.getUri()).permitAll();
+			.antMatchers(HttpMethod.POST, jwtConfig.getUri()).permitAll()
+			.antMatchers(HttpMethod.POST, "/user/**").permitAll();
+
 		    // any other requests must be authenticated
 		   // .anyRequest().authenticated();
 	}

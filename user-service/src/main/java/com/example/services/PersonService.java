@@ -33,8 +33,8 @@ public class PersonService {
 		personRepository.deleteById(id);
 	}
 
-	public Optional<Person> getPerson(Integer id) {
-		return personRepository.findById(id);
+	public Optional<Person> getPerson(String username) {
+		return personRepository.findByUsername(username);
 	}
 
 	public Person findPerson(String username, String password) {

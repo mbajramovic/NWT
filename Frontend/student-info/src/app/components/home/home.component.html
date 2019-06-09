@@ -4,6 +4,7 @@
                 <img src="../../../assets/images/home-image.PNG" style="width:85%;height:90%;">
         </div>
         <div class="col-6 first-row">
+                <app-login></app-login>
                 <app-register *ngIf="isRegisterClicked; else elseBlock"></app-register>
                 <ng-template #elseBlock><app-login></app-login></ng-template>
         </div>
