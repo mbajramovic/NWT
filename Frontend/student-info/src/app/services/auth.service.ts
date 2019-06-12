@@ -4,7 +4,7 @@ import { Person } from '../models/person';
 import { PersonService } from './person.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-const LOGIN_PATH = "";
+const LOGIN_PATH = "/user";
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +34,10 @@ export class AuthService {
         .subscribe(
           (response => {
             localStorage.setItem('user',JSON.stringify(response.body));
+            return true;
+          }),
+          (error => {
+            return false;
           })
         )
 

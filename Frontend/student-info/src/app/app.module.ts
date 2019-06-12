@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, InjectionToken } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,  ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +21,9 @@ import { ScholarshipListComponent } from './components/scholarship-list/scholars
 import { ExternalUrlDirective } from './directives/external-url.directive';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { SaveScholarshipComponent } from './components/save-scholarship/save-scholarship.component';
+import { ExperienceListComponent } from './components/experiences/experience-list/experience-list.component';
+import { ExperienceViewComponent } from './components/experiences/experience-view/experience-view.component';
+import { SaveExperienceComponent } from './components/experiences/save-experience/save-experience.component';
 
 const externalUrlProvider = new InjectionToken('externalUrlRedirectResolver');
 
@@ -37,7 +40,10 @@ const externalUrlProvider = new InjectionToken('externalUrlRedirectResolver');
     PriceSliderComponent,
     ScholarshipListComponent,
     ExternalUrlDirective,
-    SaveScholarshipComponent
+    SaveScholarshipComponent,
+    ExperienceListComponent,
+    ExperienceViewComponent,
+    SaveExperienceComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +53,8 @@ const externalUrlProvider = new InjectionToken('externalUrlRedirectResolver');
     FormsModule,
     HttpClientModule,    
     MDBBootstrapModule.forRoot(),
-    Ng5SliderModule
+    Ng5SliderModule,
+    ReactiveFormsModule
   ],
   providers: [
     {
