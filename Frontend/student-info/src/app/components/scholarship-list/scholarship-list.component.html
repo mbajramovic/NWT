@@ -3,9 +3,9 @@
     <div class="col-sm-6 col-md-3 full-flex" *ngFor="let scholarship of filteredScholarships">
         <div class="card mb-3">
             <div class="card-body">
-                <img *ngIf="scholarship.image; else defaultImg" class="card-img-top img-responsive full-height" src="../../../../assets/images/scholarship.png">
+                <img *ngIf="scholarship.image; else defaultImg" class="card-img-top img-responsive full-height" src="../../../../assets/images/stipendija.jpg">
                 <ng-template #defaultImg>
-                    <img class="card-img-top img-responsive full-height" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsiufs7KzFnTkkQ4VuAveNjPFiwUdX-z6LSHEXXXO1s-C-8XAa}">
+                    <img class="card-img-top img-responsive full-height" src="../../../../assets/images/stipendija.jpg">
                 </ng-template>
                 <hr>
                 <h4 class="card-title"><b>{{ scholarship.text }}</b></h4>

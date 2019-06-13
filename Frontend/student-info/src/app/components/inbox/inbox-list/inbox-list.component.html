@@ -1,0 +1,17 @@
+<div class="container" *ngIf="message">
+    <div class="row">
+        <div class="col-9">
+            <div class="row custom-row">
+                <h1>{{ message.title }}</h1>
+            </div>
+            <div class="row custom-row">
+                <p class="description">{{ message.text }}</p>
+            </div>
+            <div class="row custom-row">
+                <div class="col-6 Location">
+                    <h3>{{ message.sender.username }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

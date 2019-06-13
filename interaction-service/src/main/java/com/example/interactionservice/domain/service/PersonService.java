@@ -1,5 +1,6 @@
 package com.example.interactionservice.domain.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.example.interactionservice.domain.entity.Person;
@@ -23,6 +24,10 @@ public class PersonService {
 
     public void deleteUser(Integer id) {
         personRepository.deleteById(id);
+    }
+    
+    public List<Person> getByUsername(String username){
+        return personRepository.findByUsername(username);
     }
 
     

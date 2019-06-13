@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Apartment } from '../models/apartment';
 import { map } from 'rxjs/operators';
 
-const PATH = "/apigateway/apartmentUI"; // treba promijeniti putanje na ovo
+const PATH = "/apigateway/apartmentUI"; 
 
 @Injectable({
   providedIn: 'root'
@@ -19,15 +19,16 @@ export class ApartmentService {
    }
 
   getApartments(): Observable<Apartment[]> {
-    return this.http.get('http://localhost:8082/apartments', this.httpOptions).pipe(map((res: Apartment[]) => {
-      return res;
+    return this.http.get('http://localhost:8090/apartments', this.httpOptions).pipe(map((res: any) => {
+      
+      return res.body;
     }));
   }
 
   postApartments(apartment: Apartment) {
     let body = JSON.stringify(apartment);
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post('http://localhost:8082/apartment', body, this.httpOptions).subscribe((response) => {
+    return this.http.post('http://localhost:8090/apartment', body, this.httpOptions).subscribe((response) => {
     console.log(response);
     
     return <any>response;

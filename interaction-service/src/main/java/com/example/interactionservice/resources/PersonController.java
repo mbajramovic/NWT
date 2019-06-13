@@ -28,6 +28,16 @@ public class PersonController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
         }
     }
+    
+    @RequestMapping(method=RequestMethod.GET, value="/username/{username}")
+    public ResponseEntity getByUsername(@PathVariable("username") String username) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(personService.getByUsername(username));
+        }
+        catch(Exception ex) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);
+        }
+    }
 
     @RequestMapping(method=RequestMethod.DELETE, value="/{id}")
     public ResponseEntity deleteUser(@PathVariable("id") Integer id) {

@@ -15,6 +15,6 @@ export class PersonService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization' : localStorage.getItem('token')}),
       observe: 'response' as 'response'
     };
-    return this.http.get<Person>("apigateway/userUI/user/" + username, httpOptions);
+    return this.http.get<Person>("apigateway/userUI/user/user/" + username, httpOptions);
   }
 }

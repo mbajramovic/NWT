@@ -19,15 +19,15 @@ export class ScholarshipService {
    }
 
   getScholarships(): Observable<Scholarship[]> {
-    return this.http.get('http://localhost:8050/scholarship', this.httpOptions).pipe(map((res: Scholarship[]) => {
-      return res;
+    return this.http.get(PATH + '/scholarship', this.httpOptions).pipe(map((res: any) => {
+      return res.body;
     }));
   }
 
   postScholarships(scholarship: Scholarship) {
     let body = JSON.stringify(scholarship);
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post('http://localhost:8050/scholarship', body, this.httpOptions).subscribe((response: Response) => {
+    return this.http.post(PATH + '/scholarship', body, this.httpOptions).subscribe((response: Response) => {
       console.log(response);
 
       return <any>response;

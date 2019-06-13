@@ -1,0 +1,22 @@
+<!-- Default form contact -->
+<form class="text-center border border-light p-5">
+
+    <p class="h4 mb-4">Pošalji poruku</p>
+
+    <!-- Name -->
+    <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Username" [(ngModel)]="recipient">
+
+    <!-- Title -->
+    <input type="text" id="defaultContactFormEmail" class="form-control mb-4" placeholder="Naslov" [(ngModel)]="title">
+
+    <!-- Message -->
+    <div class="form-group">
+        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Poruka" [(ngModel)]="message"></textarea>
+    </div>
+
+
+    <!-- Send button -->
+    <button class="btn btn-info btn-block" type="submit" click="sendMessage()">Pošalji</button>
+
+</form>
+<!-- Default form contact -->

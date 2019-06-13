@@ -1,0 +1,22 @@
+<button type="button" class="btn btn-primary btn-lg reg-button exp-list" [routerLink]="['/saveexperience']">Dodaj svoje iskustvo</button>
+<div class="row">
+    <div class="col-sm-6 col-md-3 full-flex">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Autor</th>
+                    <th>Naslov</th>
+                    <th>Datum objavljivanja</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let experience of experiences">
+                    <td>{{experience.user.username}}</td>
+                    <td><a routerLink="/experience/{{experience.id}}">{{experience.title}}</a></td>
+                    <td>{{experience.postDate}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

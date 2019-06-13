@@ -5,17 +5,17 @@
             <div class="card-body">
                 <img *ngIf="apartment.image; else defaultImg" class="card-img-top img-responsive full-height" src="../../../../assets/images/apartment.png">
                 <ng-template #defaultImg>
-                    <img class="card-img-top img-responsive full-height" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsiufs7KzFnTkkQ4VuAveNjPFiwUdX-z6LSHEXXXO1s-C-8XAa}">
+                    <img class="card-img-top img-responsive full-height" src="../../../../assets/images/apartment.png">
                 </ng-template>
                 <hr>
-                <h4 class="card-title"><b>{{ apartment.title }}</b></h4>
-                <p class="card-text">{{ apartment.description }}</p>
-                <div class="row">
-                    <div class="col-9">
-                        <p class="card-text">{{ apartment.location.city }}, {{ apartment.location.country }}</p>
+                <h4 class="card-title "><b>{{ apartment.title }}</b></h4>
+                <p class="card-text ">{{ apartment.description }}</p>
+                <div class="row ">
+                    <div class="col-9 ">
+                        <p class="card-text ">{{ apartment.location.city }}, {{ apartment.location.country }}</p>
                     </div>
-                    <div class="col-3">
-                        <p class="card-text"><b>{{ apartment.price }} €</b></p>
+                    <div class="col-3 ">
+                        <p class="card-text "><b>{{ apartment.price }} €</b></p>
                     </div>
                 </div>
             </div>

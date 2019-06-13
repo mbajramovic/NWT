@@ -39,9 +39,9 @@ public class Seed implements ApplicationRunner {
             }
             
             List<Experience> experiences = new ArrayList<>();
-            experiences.add(new Experience(1, "My experience is written here (: Comment me, please.", users.get(0), new Date(2019,3,25)));
-            experiences.add(new Experience(2, "One more experience is written here (: Comment me, please.", users.get(1), new Date(2019,3,25)));
-            experiences.add(new Experience(3, "Last one experience is written here (: Comment me, please.", users.get(2), new Date(2019,3,25)));
+            experiences.add(new Experience(1, "My experience is written here (: Comment me, please.", "My first experience", users.get(0), new Date(2019,3,25)));
+            experiences.add(new Experience(2, "One more experience is written here (: Comment me, please.", "About me...", users.get(1), new Date(2019,3,25)));
+            experiences.add(new Experience(3, "Last one experience is written here (: Comment me, please.", "Hello,..", users.get(2), new Date(2019,3,25)));
             Integer i = 0;
             for (Experience experience : experiences) {
                 experienceService.newExperience(experience);

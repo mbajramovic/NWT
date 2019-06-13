@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, InjectionToken } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +21,13 @@ import { ScholarshipListComponent } from './components/scholarship-list/scholars
 import { ExternalUrlDirective } from './directives/external-url.directive';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { SaveScholarshipComponent } from './components/save-scholarship/save-scholarship.component';
+import { InboxComponent } from './components/inbox/inbox.component';
+import { NewMessageComponent } from './components/new-message/new-message.component';
+import { InboxListComponent } from './components/inbox/inbox-list/inbox-list.component';
+import { SaveExperienceComponent } from './components/experiences/save-experience/save-experience.component';
+import { ExperiencesListComponent } from './components/experiences/experiences-list/experiences-list.component';
+import { ExperienceViewComponent } from './components/experiences/experience-view/experience-view.component';
+import { MessageViewComponent } from './components/inbox/message-view/message-view.component';
 
 const externalUrlProvider = new InjectionToken('externalUrlRedirectResolver');
 
@@ -37,7 +44,14 @@ const externalUrlProvider = new InjectionToken('externalUrlRedirectResolver');
     PriceSliderComponent,
     ScholarshipListComponent,
     ExternalUrlDirective,
-    SaveScholarshipComponent
+    SaveScholarshipComponent,
+    InboxComponent,
+    NewMessageComponent,
+    InboxListComponent,
+    SaveExperienceComponent,
+    ExperiencesListComponent,
+    ExperienceViewComponent,
+    MessageViewComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +61,8 @@ const externalUrlProvider = new InjectionToken('externalUrlRedirectResolver');
     FormsModule,
     HttpClientModule,    
     MDBBootstrapModule.forRoot(),
-    Ng5SliderModule
+    Ng5SliderModule,
+    ReactiveFormsModule
   ],
   providers: [
     {

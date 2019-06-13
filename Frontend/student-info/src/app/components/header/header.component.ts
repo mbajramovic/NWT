@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommunicateService } from 'src/app/services/communicate.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,7 @@ export class HeaderComponent implements OnInit {
   };
   @Output() registrateChanged = new EventEmitter<boolean>();
 
-  constructor(private _communicateService: CommunicateService) { }
+  constructor(private _communicateService: CommunicateService, private authService : AuthService) { }
 
   ngOnInit() {
   }
@@ -30,6 +31,10 @@ export class HeaderComponent implements OnInit {
   onSearchChanged(event: any){
     console.log(event.target.value);
     this._communicateService.onSearchChanged(event.target.value);
+  }
+
+  logout() {
+this.authService.logout();
   }
 
 

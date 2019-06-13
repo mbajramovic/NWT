@@ -1,0 +1,25 @@
+<form [formGroup]="experienceForm" (ngSubmit)="onSubmit()">
+    <div class="container-fluid m-2">
+        <div class="row">
+            <h3 class="header">Novo iskustvo</h3>
+        </div>
+    </div>
+    <div class="form-group m-2">
+        <input type="text" class="form-control" formControlName="title" placeholder="Title" [ngClass]="{'is-invalid' : submitted && con.title.errors}">
+        <div *ngIf="submitted && con.title.errors" class="invalid-feedback">
+            <div *ngIf="con.title.errors.required">Title is required.</div>
+        </div>
+    </div>
+    <div class="form-group m-2">
+        <textarea type="text" class="form-control" formControlName="text" placeholder="Text (5-100 characters)" [ngClass]="{'is-invalid':submitted && con.text.errors}"></textarea>
+        <div *ngIf="submitted && con.text.errors" class="invalid-feedback">
+            <div *ngIf="con.text.errors.maxlength">Text is too large (max 1000 characters).</div>
+            <div *ngIf="con.text.errors.minlength">Text is too short (min 5 characters).</div>
+            <div *ngIf="con.text.errors.required">Text is required.</div>
+        </div>
+    </div>
+
+    <div class="from-group text-center">
+        <button class="btn btn-primary">Save</button>
+    </div>
+</form>

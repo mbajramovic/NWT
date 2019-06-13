@@ -26,6 +26,9 @@ public class Experience {
 
     @Size(max=1000)
     private String text;
+    
+    @Size(max=100)
+    private String title;
 
     @NotNull
     @ManyToOne
@@ -40,10 +43,11 @@ public class Experience {
 
     }
 
-    public Experience(Integer id, String text, Person user, Date postDate) {
+    public Experience(Integer id, String text, String title, Person user, Date postDate) {
         this.id = id;
         this.text = text;
         this.user = user;
+        this.title = title;
         this.postDate = postDate;
     }
 
@@ -53,6 +57,10 @@ public class Experience {
 
     public String getText() {
         return this.text;
+    }
+    
+    public String getTitle() {
+        return this.title;
     }
 
     public Person getUser() {
@@ -69,6 +77,10 @@ public class Experience {
 
     public void setText(String text) {
         this.text = text;
+    }
+    
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setUser(Person user) {

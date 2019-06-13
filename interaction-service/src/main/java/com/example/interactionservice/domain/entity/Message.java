@@ -18,6 +18,28 @@ public class Message {
     private Integer id;
 
     @Size(max=1000)
+    private String title;
+    
+    @Size(max=1000)
+    private Boolean isRead;
+    
+    public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public Boolean getIsRead() {
+		return isRead;
+	}
+
+	public void setIsRead(Boolean isRead) {
+		this.isRead = isRead;
+	}
+
+	@Size(max=1000)
     private String text;
 
     @NotNull
