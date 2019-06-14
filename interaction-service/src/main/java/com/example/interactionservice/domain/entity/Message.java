@@ -20,7 +20,6 @@ public class Message {
     @Size(max=1000)
     private String title;
     
-    @Size(max=1000)
     private Boolean isRead;
     
     public String getTitle() {
@@ -54,10 +53,11 @@ public class Message {
 
     public Message() {}
 
-    public Message(Person sender, Person recipient, String text) {
+    public Message(Person sender, Person recipient, String text, String title) {
         this.sender = sender;
         this.recipient = recipient;
         this.text = text;
+        this.title = title;
     }
 
     /**

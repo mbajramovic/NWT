@@ -30,10 +30,10 @@ public class Seed implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         try {
             List<Person> users = new ArrayList<>();
+            users.add(new Person("abecic", 3));
             users.add(new Person("mbajramovic", 1));
             users.add(new Person("aalic", 2));
-            users.add(new Person("abecic", 3));
-
+            Integer i = 0;
             for (Person user : users) {
                 personService.newPerson(user);
             }
@@ -42,7 +42,7 @@ public class Seed implements ApplicationRunner {
             experiences.add(new Experience(1, "My experience is written here (: Comment me, please.", "My first experience", users.get(0), new Date(2019,3,25)));
             experiences.add(new Experience(2, "One more experience is written here (: Comment me, please.", "About me...", users.get(1), new Date(2019,3,25)));
             experiences.add(new Experience(3, "Last one experience is written here (: Comment me, please.", "Hello,..", users.get(2), new Date(2019,3,25)));
-            Integer i = 0;
+            i = 0;
             for (Experience experience : experiences) {
                 experienceService.newExperience(experience);
                 

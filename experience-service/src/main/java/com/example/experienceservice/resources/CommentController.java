@@ -31,7 +31,8 @@ public class CommentController {
     @RequestMapping(method = RequestMethod.POST, value="/comment", consumes = "application/json")
     public ResponseEntity postComment(@RequestBody Comment comment) {
         try {
-System.out.println(comment.toString());            return ResponseEntity.status(HttpStatus.OK).body(commentService.newComment(comment));
+System.out.println(comment.toString());           
+ return ResponseEntity.status(HttpStatus.OK).body(commentService.newComment(comment));
         }
         catch(Exception ex) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(),ex);

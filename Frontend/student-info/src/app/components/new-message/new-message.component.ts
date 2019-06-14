@@ -26,7 +26,9 @@ export class NewMessageComponent implements OnInit {
   }
 
   sendMessage(){
+    console.log(this.recipient);
     	this._messageService.getRecipient(this.recipient).subscribe( result => {
+        console.log(result);
         var message = new Message();
         message.text = this.message;
         message.title = this.title;

@@ -48,7 +48,10 @@ export class ExperienceViewComponent implements OnInit {
     comment.postDate = new Date();
     this.commentService.save(comment).subscribe(res => {
       console.log(res);
-    })
+      this.commentService.fetch(this.experience.id).subscribe(res => {
+        this.comments = res;
+      });
+    });
   }
 
 }

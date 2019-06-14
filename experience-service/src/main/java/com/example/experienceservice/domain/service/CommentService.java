@@ -21,10 +21,14 @@ public class CommentService {
 
     public Comment newComment(Comment comment) throws Exception {
         try {
-            if (syncRequestSender.friendshipExists(comment.getExperience().getUser().getUserId(), comment.getUser().getUserId()))
+           /* if (syncRequestSender.friendshipExists(comment.getExperience().getUser().getUserId(), comment.getUser().getUserId()))
                 return commentRepository.save(comment);
-            else
-                throw new Exception("You must follow the user to comment his experiences.");
+            else {
+                return commentRepository.save(comment);
+
+               // throw new Exception("You must follow the user to comment his experiences.");
+            }*/
+           return  commentRepository.save(comment);
         }
         catch(Exception ex) {
             throw ex;

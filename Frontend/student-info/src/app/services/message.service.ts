@@ -20,13 +20,15 @@ export class MessageService {
    }
 
   getRecipient(username: string): Observable<Person> {
-    return this.http.get('http://localhost:3000/username/'+username, this.httpOptions).pipe(map((res: Person) => {
-      return res;
+    return this.http.get(PATH+'/user/username/'+username, this.httpOptions).pipe(map((res: Response) => {
+      console.log(<any>res.body[0]);
+      return (res && res.body) ? <any>res.body[0] : res;
     }));
   }
 
   sendMessage(message: Message){
     let body = JSON.stringify(message);
+    console.log(body);
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(PATH + '/message', body, this.httpOptions).subscribe((response) => {
     console.log(response);
@@ -37,6 +39,7 @@ export class MessageService {
 
   getMessages(id: number): Observable<Message[]> {
     return this.http.get(PATH + '/user/'+id+'/messages', this.httpOptions).pipe(map((res: any) => {
+      console.log(res);
       return res.body;
     }));
   }

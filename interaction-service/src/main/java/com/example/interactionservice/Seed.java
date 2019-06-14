@@ -28,9 +28,9 @@ public class Seed implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         try {
             List<Person> users = new ArrayList<>();
-            users.add(new Person("mbajramovic", 1));
-            users.add(new Person("aalic", 2));
-            users.add(new Person("abecic", 3));
+            users.add(new Person("abecic1", 1));
+            users.add(new Person("aalic1", 2));
+            users.add(new Person("mbajramovi1", 3));
 
             for (Person user : users) {
                 personService.newPerson(user);
@@ -51,11 +51,11 @@ public class Seed implements ApplicationRunner {
             }
 
             List<Message> messages = new ArrayList<>();
-            messages.add(new Message(users.get(0), users.get(2), "Hello Ajla, Maid here :)"));
-            messages.add(new Message(users.get(2), users.get(0), "Hello Maid, Ajla here (:"));
-            messages.add(new Message(users.get(1), users.get(0), "Hello Maid, how are you today? Greetings, Amera!"));
-            messages.add(new Message(users.get(0), users.get(1), "Amera, I am fine, thank u"));
-            messages.add(new Message(users.get(2), users.get(1), "Amera, why don't u ask how i am today??? Angry, Ajla."));
+            messages.add(new Message(users.get(0), users.get(2), "Hello Ajla, Maid here :)", "nova poruka"));
+            messages.add(new Message(users.get(2), users.get(0), "Hello Maid, Ajla here (:", "nova poruka1"));
+            messages.add(new Message(users.get(1), users.get(0), "Hello Maid, how are you today? Greetings, Amera!", "nova poruka2"));
+            messages.add(new Message(users.get(0), users.get(1), "Amera, I am fine, thank u", "nova poruka 3"));
+            messages.add(new Message(users.get(2), users.get(1), "Amera, why don't u ask how i am today??? Angry, Ajla.", "nova poruka4"));
             for (Message message : messages) {
                 messageService.newMessage(message);
                 System.out.println(message.toString());
